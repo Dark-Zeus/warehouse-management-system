@@ -1,8 +1,8 @@
 # Warehouse Management System
 
-![JavaFX](https://img.shields.io/badge/JavaFX-v19-blue.svg)
+![JavaFX](https://img.shields.io/badge/JavaFX-v23-blue.svg)
 ![Maven](https://img.shields.io/badge/Maven-Build-brightgreen.svg)
-![Java](https://img.shields.io/badge/Java-22%2B-orange.svg)
+![Java](https://img.shields.io/badge/Java-22-orange.svg)
 
 The **Warehouse Management System** is a JavaFX-based desktop application that helps streamline warehouse operations, including inventory management, order processing and transportation. The system is designed for 2 nd Year 1st Semester Rapid Application Development (IS2104) Assignment at UCSC.
 
