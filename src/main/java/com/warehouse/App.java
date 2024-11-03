@@ -7,6 +7,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.warehouse.model.User;
+import com.warehouse.util.autosql.SQLGen;
+import com.warehouse.util.SQLConnector;
 
 /**
  * JavaFX App
@@ -17,7 +23,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"), 640, 480);
+        scene = new Scene(loadFXML("login"));
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -32,6 +39,31 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        String tables = SQLGen.generateTables("warehouse", User.class);
+
+        Connection primaryConn = SQLConnector.getConnection();
+
+        SQLGen.executeInSequence(primaryConn, tables);
+
+        SQLConnector.closeSQLConnection();
+
+        Connection con = SQLConnector.getConnection("warehouse");
+
+        User user = new User();
+        user.setId(1);
+        user.setUsername("admin");
+        user.setPassword("admin");
+
+        String record = SQLGen.generateRecord(user, true);
+
+        try{
+            con.createStatement().execute(record);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        SQLConnector.closeDBConnection();
+
         launch();
     }
 
