@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import com.warehouse.util.CFXMLLoader;
+
 import com.warehouse.model.User;
 import com.warehouse.util.autosql.SQLGen;
 import com.warehouse.util.SQLConnector;
@@ -23,19 +25,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"));
+        scene = new Scene(CFXMLLoader.loadFXML("login"));
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
 
     static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        scene.setRoot(CFXMLLoader.loadFXML(fxml));
     }
 
     public static void main(String[] args) {
