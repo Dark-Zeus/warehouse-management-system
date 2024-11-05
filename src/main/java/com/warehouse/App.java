@@ -11,9 +11,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.warehouse.util.CFXMLLoader;
-
+import com.warehouse.model.Inventory;
+import com.warehouse.model.Invoice;
+import com.warehouse.model.Transport;
 import com.warehouse.model.User;
-import com.warehouse.util.autosql.SQLGen;
+import com.warehouse.model.Warehouse;
+import com.warehouse.util.autosql.AutoSQL;
 import com.warehouse.util.SQLConnector;
 
 /**
@@ -36,24 +39,33 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        String tables = SQLGen.generateTables("warehouse", User.class);
+        String tables = AutoSQL.generateTables("warehouse",
+                User.class,
+                Warehouse.class,
+                Inventory.class,
+                Transport.class,
+                Invoice.class
+        );
+
+        System.out.println(tables);
 
         Connection primaryConn = SQLConnector.getConnection();
 
-        SQLGen.executeInSequence(primaryConn, tables);
+        AutoSQL.executeInSequence(primaryConn, tables);
 
         SQLConnector.closeSQLConnection();
 
         Connection con = SQLConnector.getConnection("warehouse");
 
         User user = new User();
-        user.setId(1);
+        user.setUser_id(0);
         user.setUsername("admin");
         user.setPassword("admin");
+        user.setRole("admin");
 
-        String record = SQLGen.generateRecord(user, true);
+        String record = AutoSQL.generateRecord(user, true);
 
-        try{
+        try {
             con.createStatement().execute(record);
         } catch (SQLException e) {
             e.printStackTrace();

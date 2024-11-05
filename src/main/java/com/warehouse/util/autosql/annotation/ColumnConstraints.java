@@ -5,9 +5,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-// Annotation for primary key
+// Annotation for column constraints
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface PrimaryKey {
-
+public @interface ColumnConstraints {
+    String defaultValue() default "";
+    boolean notNull() default false;
+    boolean unique() default false;
+    boolean autoIncrement() default false;
 }

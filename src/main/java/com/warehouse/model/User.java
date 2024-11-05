@@ -1,33 +1,47 @@
 package com.warehouse.model;
 
 import com.warehouse.util.autosql.Model;
-
+import com.warehouse.util.autosql.annotation.ColumnConstraints;
+import com.warehouse.util.autosql.annotation.ForiegnKey;
 import com.warehouse.util.autosql.annotation.PrimaryKey;
 import com.warehouse.util.autosql.annotation.SQLType;
 
 public class User implements Model{
+    @SQLType("INT")
     @PrimaryKey
-    private int id;
-    @SQLType("VARCHAR(255)")
+    @ColumnConstraints(autoIncrement = true)
+    private int user_id;
+
+    @SQLType("VARCHAR(50)")
+    @PrimaryKey
+    @ColumnConstraints(notNull = true)
     private String username;
+
     @SQLType("VARCHAR(255)")
+    @ColumnConstraints(notNull = true)
     private String password;
+
+    @SQLType("VARCHAR(20)")
+    @ColumnConstraints(notNull = true)
+    private String role;
 
     public User() {
     }
 
-    public User(int id, String username, String password) {
-        this.id = id;
+
+    public User(int user_id, String username, String password, String role) {
+        this.user_id = user_id;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
-    public int getId() {
-        return id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() {
@@ -44,5 +58,13 @@ public class User implements Model{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
