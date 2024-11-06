@@ -16,7 +16,7 @@ public class User implements Model{
 
     @SQLType("VARCHAR(50)")
     @PrimaryKey
-    @ColumnConstraints(notNull = true)
+    @ColumnConstraints(notNull = true, unique = true)
     private String username;
 
     @SQLType("VARCHAR(255)")
