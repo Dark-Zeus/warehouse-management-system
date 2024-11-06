@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:controller="com.warehouse.controller.AddWarehouseController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.warehouse.controller.AddWarehouseController">
    <children>
       <Label fx:id="label_InsertNewRecord" layoutX="202.0" layoutY="42.0" text="Insert New Record">
          <font>
@@ -18,7 +17,7 @@
       <Label fx:id="warehouse_name_LBL" layoutX="51.0" layoutY="200.0" text="warehouse_name" />
       <Label fx:id="warehouse_location_LBL" layoutX="51.0" layoutY="252.0" text="Location" />
       <Label fx:id="warehouse_capacity_LBL" layoutX="51.0" layoutY="301.0" text="Capacity" />
-      <TextField fx:id="warehouse_id_txt" layoutX="257.0" layoutY="145.0" prefHeight="26.0" prefWidth="295.0" AnchorPane.leftAnchor="257.0" AnchorPane.topAnchor="145.0" />
+      <TextField fx:id="warehouse_id_txt" disable="true" editable="false" layoutX="257.0" layoutY="145.0" prefHeight="26.0" prefWidth="295.0" AnchorPane.leftAnchor="257.0" AnchorPane.topAnchor="145.0" />
       <TextField fx:id="warehouse_name_txt" layoutX="257.0" layoutY="196.0" prefHeight="26.0" prefWidth="295.0" AnchorPane.leftAnchor="256.8" />
       <TextField fx:id="warehouse_location_txt" layoutX="256.0" layoutY="248.0" prefHeight="26.0" prefWidth="295.0" AnchorPane.leftAnchor="256.8" />
       <TextField fx:id="warehouse_capacity_txt" layoutX="256.0" layoutY="297.0" prefHeight="26.0" prefWidth="295.0" AnchorPane.leftAnchor="256.8" />
