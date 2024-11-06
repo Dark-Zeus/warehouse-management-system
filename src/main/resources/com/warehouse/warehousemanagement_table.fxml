@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.warehouse.controller.WarehouseManagementController">
    <children>
       <TableView fx:id="warehouseTable" layoutX="38.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="523.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="38.28571428571422" AnchorPane.topAnchor="112.0">
         <columns>
           <TableColumn fx:id="columnwarehouse_id" prefWidth="126.4000244140625" text="warehouse_id" />
           <TableColumn fx:id="columnwarehouse_name" prefWidth="134.39996337890625" text="warehouse_name" />
-            <TableColumn fx:id="columnwarehouse_location" prefWidth="88.800048828125" text="location" />
-            <TableColumn fx:id="columnwarehouse_storage" prefWidth="172.79998779296875" text="storage_capacity" />
+          <TableColumn fx:id="columnwarehouse_location" prefWidth="88.800048828125" text="location" />
+          <TableColumn fx:id="columnwarehouse_storage" prefWidth="172.79998779296875" text="storage_capacity" />
         </columns>
       </TableView>
       <Label fx:id="WarehouseManagment_label" layoutX="123.0" layoutY="31.0" prefHeight="46.0" prefWidth="353.0" text="Warehouse Management">
@@ -22,8 +22,8 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="WMaddrecordBtn" layoutX="51.0" layoutY="344.0" mnemonicParsing="false" style="-fx-background-color: #99ff99;" text="Add  Record" AnchorPane.bottomAnchor="30.857142857142858" />
-      <Button fx:id="WMeditrecordBtn" layoutX="252.0" layoutY="344.0" mnemonicParsing="false" style="-fx-background-color: #fed8b1;" text="Edit  Record" AnchorPane.bottomAnchor="30.857142857142858" />
-      <Button fx:id="WMdeleterecordBtn" layoutX="458.0" layoutY="344.0" mnemonicParsing="false" style="-fx-background-color: #f1807e;" text="Delete Record" AnchorPane.bottomAnchor="30.857142857142858" />
+      <Button fx:id="WMaddrecordBtn" layoutX="51.0" layoutY="344.0" mnemonicParsing="false" onAction="#addWarehouse" style="-fx-background-color: #99ff99;" text="Add Record" AnchorPane.bottomAnchor="30.857142857142858" />
+      <Button fx:id="WMeditrecordBtn" layoutX="252.0" layoutY="344.0" mnemonicParsing="false" onAction="#editWarehouse" style="-fx-background-color: #fed8b1;" text="Edit Record" AnchorPane.bottomAnchor="30.857142857142858" />
+      <Button fx:id="WMdeleterecordBtn" layoutX="458.0" layoutY="344.0" mnemonicParsing="false" onAction="#deleteWarehouse" style="-fx-background-color: #f1807e;" text="Delete Record" AnchorPane.bottomAnchor="30.857142857142858" />
    </children>
 </AnchorPane>
