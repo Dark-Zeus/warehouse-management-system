@@ -21,18 +21,18 @@ public class WarehouseDAO {
     // Get all warehouses from the database
     public List<Warehouse> getAllWarehouses() {
         List<Warehouse> warehouses = new ArrayList<>();
-        String sql = "SELECT * FROM warehouse";  // Ensure 'warehouse' table is correct in your DB
+        String sql = "SELECT * FROM warehouse"; // Ensure 'warehouse' table is correct in your DB
 
         try {
-             PreparedStatement stmt = conn.prepareStatement(sql); 
-             ResultSet rs = stmt.executeQuery();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Warehouse warehouse = new Warehouse(
-                        rs.getInt("warehouse_id"),            // Matches column 'warehouse_id'
-                        rs.getString("warehouse_name"),       // Matches column 'warehouse_name'
-                        rs.getString("location"),             // Matches column 'location'
-                        rs.getInt("capacity")                 // Matches column 'capacity'
+                        rs.getInt("warehouse_id"), // Matches column 'warehouse_id'
+                        rs.getString("warehouse_name"), // Matches column 'warehouse_name'
+                        rs.getString("location"), // Matches column 'location'
+                        rs.getInt("capacity") // Matches column 'capacity'
                 );
                 warehouses.add(warehouse);
             }
@@ -45,13 +45,14 @@ public class WarehouseDAO {
 
     // Add a new warehouse to the database
     public boolean addWarehouse(Warehouse warehouse) {
-        String sql = "INSERT INTO warehouse (warehouse_name, location, capacity) VALUES (?, ?, ?)"; // Adjust column names
-        try{
-             PreparedStatement stmt = conn.prepareStatement(sql);
+        String sql = "INSERT INTO warehouse (warehouse_name, location, capacity) VALUES (?, ?, ?)"; // Adjust column
+                                                                                                    // names
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1, warehouse.getWarehouse_name());  // 'warehouse_name'
-            stmt.setString(2, warehouse.getLocation());        // 'location'
-            stmt.setInt(3, warehouse.getCapacity());           // 'capacity'
+            stmt.setString(1, warehouse.getWarehouse_name()); // 'warehouse_name'
+            stmt.setString(2, warehouse.getLocation()); // 'location'
+            stmt.setInt(3, warehouse.getCapacity()); // 'capacity'
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
@@ -65,10 +66,10 @@ public class WarehouseDAO {
     // Delete a warehouse from the database
     public boolean deleteWarehouse(int warehouseId) {
         String sql = "DELETE FROM warehouse WHERE warehouse_id = ?"; // 'warehouse_id' matches column name
-        try{
-             PreparedStatement stmt = conn.prepareStatement(sql);
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, warehouseId);  // 'warehouse_id'
+            stmt.setInt(1, warehouseId); // 'warehouse_id'
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
@@ -81,14 +82,16 @@ public class WarehouseDAO {
 
     // Update warehouse details in the database
     public boolean updateWarehouse(Warehouse warehouse) {
-        String sql = "UPDATE warehouse SET warehouse_name = ?, location = ?, capacity = ? WHERE warehouse_id = ?";  // Updated column names
-        try (Connection conn = SQLConnector.getConnection("your_database_name"); 
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        String sql = "UPDATE warehouse SET warehouse_name = ?, location = ?, capacity = ? WHERE warehouse_id = ?"; // Updated
+                                                                                                                   // column
+                                                                                                                   // names
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1, warehouse.getWarehouse_name());  // 'warehouse_name'
-            stmt.setString(2, warehouse.getLocation());        // 'location'
-            stmt.setInt(3, warehouse.getCapacity());           // 'capacity'
-            stmt.setInt(4, warehouse.getWarehouse_id());       // 'warehouse_id'
+            stmt.setString(1, warehouse.getWarehouse_name()); // 'warehouse_name'
+            stmt.setString(2, warehouse.getLocation()); // 'location'
+            stmt.setInt(3, warehouse.getCapacity()); // 'capacity'
+            stmt.setInt(4, warehouse.getWarehouse_id()); // 'warehouse_id'
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;

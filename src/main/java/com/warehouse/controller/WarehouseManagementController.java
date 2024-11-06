@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 
 public class WarehouseManagementController {
 
-    private WarehouseDAO warehouseDAO = new WarehouseDAO();
     private ObservableList<Warehouse> warehouseList = FXCollections.observableArrayList();
 
     @FXML
@@ -64,6 +63,7 @@ public class WarehouseManagementController {
 
     // Method to load warehouse data into the table
     public void loadWarehouseData() {
+        WarehouseDAO warehouseDAO = new WarehouseDAO();
         warehouseList.clear();
         warehouseList.addAll(warehouseDAO.getAllWarehouses());
         warehouseTable.setItems(warehouseList);
@@ -79,6 +79,7 @@ public class WarehouseManagementController {
     @FXML
     void openWarehouseForm(ActionEvent event) {
         // Prompt user to enter warehouse details (dummy data for testing)
+        WarehouseDAO warehouseDAO = new WarehouseDAO();
         Warehouse warehouse = new Warehouse(0, "New Warehouse", "Location XYZ", 1000);
 
         if (warehouseDAO.addWarehouse(warehouse)) {
@@ -93,6 +94,7 @@ public class WarehouseManagementController {
     @FXML
     void deleteWarehouseRecord(ActionEvent event) {
         Warehouse selectedWarehouse = warehouseTable.getSelectionModel().getSelectedItem();
+        WarehouseDAO warehouseDAO = new WarehouseDAO();
         if (selectedWarehouse != null) {
             if (warehouseDAO.deleteWarehouse(selectedWarehouse.getWarehouse_id())) {
                 warehouseList.remove(selectedWarehouse);
@@ -108,6 +110,7 @@ public class WarehouseManagementController {
     // Edit selected warehouse record
     @FXML
     void openWarehouseEditForm(ActionEvent event) {
+        WarehouseDAO warehouseDAO = new WarehouseDAO();
         Warehouse selectedWarehouse = warehouseTable.getSelectionModel().getSelectedItem();
         if (selectedWarehouse != null) {
             // Modify the details of the selected warehouse (this part should be dynamic
@@ -169,6 +172,7 @@ public class WarehouseManagementController {
     @FXML
     private void deleteWarehouse(ActionEvent event) {
         Warehouse wh = warehouseTable.getSelectionModel().getSelectedItem();
+        WarehouseDAO warehouseDAO = new WarehouseDAO();
         if (wh != null) {
             if (warehouseDAO.deleteWarehouse(wh.getWarehouse_id())) {
                 warehouseList.remove(wh);
