@@ -1,11 +1,7 @@
-.login-container{
-   -fx-padding: 40px 20px 0px 20px;
-   -fx-font-family: "Raleway";
-}
-
-.text-input{
-    -fx-border-radius: 4px;
-    -fx-padding: 8px;
+.main-label{
+    -fx-font-family: "Raleway";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
 }
 
 .graphic{

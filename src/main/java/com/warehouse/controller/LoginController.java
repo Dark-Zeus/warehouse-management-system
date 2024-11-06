@@ -41,8 +41,10 @@ public class LoginController {
         if (isValid) {
             Scene dashboad = new Scene(CFXMLLoader.loadFXML("dashboard"));
             Stage stage = (Stage) loginBtn.getScene().getWindow();
+            stage.setResizable(true);
+            stage.setMaximized(true);
+            stage.setTitle("Warehouse Management System");
             stage.setScene(dashboad);
-            System.out.println("Invalid login");
             return;
         }else {
             //show "JAVAFX ALERT" with message "Invalid login"
