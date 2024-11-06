@@ -42,7 +42,6 @@ public class LoginController {
             Scene dashboad = new Scene(CFXMLLoader.loadFXML("dashboard"));
             Stage stage = (Stage) loginBtn.getScene().getWindow();
             stage.setResizable(true);
-            stage.setMaximized(true);
             stage.setTitle("Warehouse Management System");
             stage.setScene(dashboad);
             return;
