@@ -46,7 +46,7 @@ public class WarehouseManagementController {
     @FXML
     private TableView<Warehouse> warehouseTable;
 
-    // Initializes the controller class and table data
+    // Initializes the controller class and sets up table columns
     @FXML
     private void initialize() {
         // Set up table columns
@@ -55,15 +55,20 @@ public class WarehouseManagementController {
         columnwarehouse_location.setCellValueFactory(new PropertyValueFactory<>("location"));
         columnwarehouse_storage.setCellValueFactory(new PropertyValueFactory<>("capacity"));
 
-        // Load data from the database
+        // Load data from the database initially
         loadWarehouseData();
     }
 
-    // Load warehouse data into the table
+    // Method to load warehouse data into the table
     private void loadWarehouseData() {
         warehouseList.clear();
         warehouseList.addAll(warehouseDAO.getAllWarehouses());
         warehouseTable.setItems(warehouseList);
+    }
+
+    // Call this method whenever the form is opened to ensure data is current
+    public void refreshTable() {
+        loadWarehouseData();
     }
 
     // Add new warehouse record
