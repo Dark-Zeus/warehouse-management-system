@@ -1,5 +1,7 @@
 package com.warehouse.controller;
 
+import com.warehouse.model.Warehouse;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,19 +24,19 @@ public class WarehouseManagmentController {
     private Label WarehouseManagment_label;
 
     @FXML
-    private TableColumn<?, ?> columnwarehouse_id;
+    private TableColumn<Warehouse, Integer> columnwarehouse_id;
 
     @FXML
-    private TableColumn<?, ?> columnwarehouse_location;
+    private TableColumn<Warehouse, String> columnwarehouse_location;
 
     @FXML
-    private TableColumn<?, ?> columnwarehouse_name;
+    private TableColumn<Warehouse, String> columnwarehouse_name;
 
     @FXML
-    private TableColumn<?, ?> columnwarehouse_storage;
+    private TableColumn<Warehouse, Integer> columnwarehouse_storage;
 
     @FXML
-    private TableView<?> warehouseTable;
+    private TableView<Warehouse> warehouseTable;
 
     @FXML
     private void initialize() {
