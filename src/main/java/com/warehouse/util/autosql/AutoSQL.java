@@ -12,6 +12,7 @@ import com.warehouse.util.autosql.annotation.ColumnConstraints;
 import com.warehouse.util.autosql.annotation.ForiegnKey;
 import com.warehouse.util.autosql.annotation.PrimaryKey;
 import com.warehouse.util.autosql.annotation.SQLType;
+import com.warehouse.util.autosql.annotation.Table;
 
 public class AutoSQL {
     private static final String ANSI_GREEN = "\u001B[32m";
@@ -107,8 +108,15 @@ public class AutoSQL {
     }
 
     private static String generateTableQuery(Class<? extends Model> modelClass) {
+
+        String tableName = modelClass.getSimpleName().toLowerCase();
+
+        if(modelClass.getAnnotation(Table.class) != null) {
+            tableName = modelClass.getAnnotation(Table.class).value();
+        }
+
         System.out.println("\t[" + ANSI_BLUE + ANSI_BOLD + "INFO" + ANSI_RESET + "] " + ANSI_GREEN
-                + "Generating table for " + ANSI_YELLOW + modelClass.getSimpleName() + ANSI_RESET);
+                + "Generating table for " + ANSI_YELLOW + modelClass.getSimpleName() + "(" + tableName + ")" + ANSI_RESET);
 
         Model model;
         try {
@@ -125,7 +133,7 @@ public class AutoSQL {
 
         Map<String, List<Map<String, String>>> foreignKeys = new HashMap<>();
 
-        String query = "CREATE TABLE IF NOT EXISTS `" + model.getClass().getSimpleName().toLowerCase() + "` (\n";
+        String query = "CREATE TABLE IF NOT EXISTS `" + tableName + "` (\n";
         for (Field field : fields) {
             if (field.isAnnotationPresent(SQLType.class)) {
                 SQLType sqlType = field.getAnnotation(SQLType.class);

@@ -8,11 +8,6 @@
     -fx-padding: 8px;
 }
 
-.button{
-    -fx-background-color: #ff0000;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-border-radius: 4px;
-    -fx-padding: 8px 16px;
+.graphic{
+    -fx-padding: 0px;
 }
