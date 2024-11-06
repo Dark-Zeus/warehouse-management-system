@@ -1,0 +1,33 @@
+.main-label{
+    -fx-font-family: "Raleway";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.main-label.light-txt{
+    -fx-text-fill: #ffffff;
+}
+
+.left-pane{
+    -fx-background-color: #444444;
+}
+
+.button{
+    -fx-background-color: #444444;
+    -fx-text-fill: #3a3a3a;
+    -fx-font-family: "Raleway";
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.button.update{
+    -fx-background-color:  #fed8b1;
+}
+
+.button.delete{
+    -fx-background-color: #f1807e;
+}
+
+.button.add{
+    -fx-background-color: #99ff99;
+}
