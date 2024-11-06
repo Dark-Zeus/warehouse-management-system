@@ -5,7 +5,9 @@ import com.warehouse.util.autosql.annotation.ColumnConstraints;
 import com.warehouse.util.autosql.annotation.ForiegnKey;
 import com.warehouse.util.autosql.annotation.PrimaryKey;
 import com.warehouse.util.autosql.annotation.SQLType;
+import com.warehouse.util.autosql.annotation.Table;
 
+@Table("user")
 public class User implements Model{
     @SQLType("INT")
     @PrimaryKey
