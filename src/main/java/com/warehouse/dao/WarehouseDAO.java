@@ -11,97 +11,91 @@ import com.warehouse.model.Warehouse;
 import com.warehouse.util.SQLConnector;
 
 public class WarehouseDAO {
-    private Connection conn;
+
+    Connection conn = null;
 
     public WarehouseDAO() {
         conn = SQLConnector.getConnection("warehouse");
     }
 
-    // Method to add a new warehouse
-    public boolean addWarehouse(Warehouse warehouse) {
-        String query = "INSERT INTO `warehouse` (warehouse_name, location, capacity) VALUES (?, ?, ?)";
-        try {
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, warehouse.getWarehouse_name());
-            ps.setString(2, warehouse.getLocation());
-            ps.setInt(3, warehouse.getCapacity());
-            return ps.executeUpdate() > 0;  // Returns true if insert was successful
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    // Method to get a warehouse by ID
-    public Warehouse getWarehouseById(int id) {
-        String query = "SELECT * FROM `warehouse` WHERE warehouse_id = ?";
-        Warehouse warehouse = null;
-        try {
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                warehouse = new Warehouse(
-                    rs.getInt("warehouse_id"),
-                    rs.getString("warehouse_name"),
-                    rs.getString("location"),
-                    rs.getInt("capacity")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return warehouse;
-    }
-
-    // Method to update an existing warehouse
-    public boolean updateWarehouse(Warehouse warehouse) {
-        String query = "UPDATE `warehouse` SET warehouse_name = ?, location = ?, capacity = ? WHERE warehouse_id = ?";
-        try {
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, warehouse.getWarehouse_name());
-            ps.setString(2, warehouse.getLocation());
-            ps.setInt(3, warehouse.getCapacity());
-            ps.setInt(4, warehouse.getWarehouse_id());
-            return ps.executeUpdate() > 0;  // Returns true if update was successful
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    // Method to delete a warehouse by ID
-    public boolean deleteWarehouse(int id) {
-        String query = "DELETE FROM `warehouse` WHERE warehouse_id = ?";
-        try {
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, id);
-            return ps.executeUpdate() > 0;  // Returns true if deletion was successful
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    // Method to retrieve all warehouses
+    // Get all warehouses from the database
     public List<Warehouse> getAllWarehouses() {
         List<Warehouse> warehouses = new ArrayList<>();
-        String query = "SELECT * FROM `warehouse`";
+        String sql = "SELECT * FROM warehouse";  // Ensure 'warehouse' table is correct in your DB
+
         try {
-            PreparedStatement ps = conn.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
+             PreparedStatement stmt = conn.prepareStatement(sql); 
+             ResultSet rs = stmt.executeQuery();
+
             while (rs.next()) {
                 Warehouse warehouse = new Warehouse(
-                    rs.getInt("warehouse_id"),
-                    rs.getString("warehouse_name"),
-                    rs.getString("location"),
-                    rs.getInt("capacity")
+                        rs.getInt("warehouse_id"),            // Matches column 'warehouse_id'
+                        rs.getString("warehouse_name"),       // Matches column 'warehouse_name'
+                        rs.getString("location"),             // Matches column 'location'
+                        rs.getInt("capacity")                 // Matches column 'capacity'
                 );
                 warehouses.add(warehouse);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return warehouses;
+    }
+
+    // Add a new warehouse to the database
+    public boolean addWarehouse(Warehouse warehouse) {
+        String sql = "INSERT INTO warehouse (warehouse_name, location, capacity) VALUES (?, ?, ?)"; // Adjust column names
+        try{
+             PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, warehouse.getWarehouse_name());  // 'warehouse_name'
+            stmt.setString(2, warehouse.getLocation());        // 'location'
+            stmt.setInt(3, warehouse.getCapacity());           // 'capacity'
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Delete a warehouse from the database
+    public boolean deleteWarehouse(int warehouseId) {
+        String sql = "DELETE FROM warehouse WHERE warehouse_id = ?"; // 'warehouse_id' matches column name
+        try{
+             PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, warehouseId);  // 'warehouse_id'
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Update warehouse details in the database
+    public boolean updateWarehouse(Warehouse warehouse) {
+        String sql = "UPDATE warehouse SET warehouse_name = ?, location = ?, capacity = ? WHERE warehouse_id = ?";  // Updated column names
+        try (Connection conn = SQLConnector.getConnection("your_database_name"); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, warehouse.getWarehouse_name());  // 'warehouse_name'
+            stmt.setString(2, warehouse.getLocation());        // 'location'
+            stmt.setInt(3, warehouse.getCapacity());           // 'capacity'
+            stmt.setInt(4, warehouse.getWarehouse_id());       // 'warehouse_id'
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
