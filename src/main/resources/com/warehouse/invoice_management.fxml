@@ -25,10 +25,10 @@
             </Label>
             <TableView fx:id="userTable" maxHeight="1.7976931348623157E308" prefHeight="281.0" prefWidth="352.0">
                <columns>
-                  <TableColumn fx:id="user_id" prefWidth="78.85714936256409" text="Invoice Id" />
-                  <TableColumn prefWidth="103.20001220703125" text="User Id" />
-                  <TableColumn fx:id="username" prefWidth="184.0" text="Total Amount" />
-                  <TableColumn fx:id="role" prefWidth="150.39999999999998" text="Date" />
+                  <TableColumn fx:id="invoice_id" prefWidth="78.85714936256409" text="Invoice Id" />
+                  <TableColumn fx:id="user_id" prefWidth="103.20001220703125" text="User Id" />
+                  <TableColumn fx:id="total_amount" prefWidth="184.0" text="Total Amount" />
+                  <TableColumn fx:id="date" prefWidth="150.39999999999998" text="Date" />
                </columns>
             </TableView>
             <GridPane hgap="100.0" prefHeight="60.0" prefWidth="535.0">
@@ -70,9 +70,9 @@
                   <String fx:value="light-txt" />
                </styleClass>
             </Label>
-            <TextField fx:id="usernameTxt" prefHeight="30.0" promptText="User Name" text="User Id" />
-            <TextField fx:id="passwordTxt" prefHeight="30.0" promptText="Password" text="Total Amount" />
-            <TextField fx:id="passwordTxt1" prefHeight="30.0" promptText="Password" text="Date" />
+            <TextField fx:id="userId" prefHeight="30.0" promptText="User Name" text="User Id" />
+            <TextField fx:id="totalAmount" prefHeight="30.0" promptText="Password" text="Total Amount" />
+            <TextField fx:id="date" prefHeight="30.0" promptText="Password" text="Date" />
             <Pane prefHeight="25.0" prefWidth="221.0" />
             <Button fx:id="addBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addUser" prefHeight="55.0" prefWidth="221.0" text="Add">
                <styleClass>
