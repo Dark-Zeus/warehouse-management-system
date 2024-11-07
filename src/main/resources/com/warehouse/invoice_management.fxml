@@ -70,9 +70,9 @@
                   <String fx:value="light-txt" />
                </styleClass>
             </Label>
-            <TextField fx:id="userId" prefHeight="30.0" promptText="User Name" text="User Id" />
-            <TextField fx:id="totalAmount" prefHeight="30.0" promptText="Password" text="Total Amount" />
-            <TextField fx:id="date" prefHeight="30.0" promptText="Password" text="Date" />
+            <TextField fx:id="useridTxt" prefHeight="30.0" promptText="User Id" text="User Id" />
+            <TextField fx:id="totalamountTxt" prefHeight="30.0" promptText="Total Amount" text="Total Amount" />
+            <TextField fx:id="dateTxt" prefHeight="30.0" promptText="Date" text="Date" />
             <Pane prefHeight="25.0" prefWidth="221.0" />
             <Button fx:id="addBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addUser" prefHeight="55.0" prefWidth="221.0" text="Add">
                <styleClass>
