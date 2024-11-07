@@ -5,6 +5,7 @@ import com.warehouse.util.autosql.annotation.ColumnConstraints;
 import com.warehouse.util.autosql.annotation.ForiegnKey;
 import com.warehouse.util.autosql.annotation.PrimaryKey;
 import com.warehouse.util.autosql.annotation.SQLType;
+import com.warehouse.util.autosql.annotation.Table;
 
 // CREATE TABLE Inventory (
 //   inventory_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -15,6 +16,7 @@ import com.warehouse.util.autosql.annotation.SQLType;
 //   FOREIGN KEY (warehouse_id) REFERENCES Warehouses(warehouse_id)
 // );
 
+@Table("inventory")
 public class Inventory implements Model {
     @SQLType("INT")
     @PrimaryKey
