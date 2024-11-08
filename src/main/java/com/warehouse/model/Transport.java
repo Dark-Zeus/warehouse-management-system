@@ -10,6 +10,14 @@ public class Transport implements Model{
     @PrimaryKey
     @ColumnConstraints(autoIncrement = true)
     private int transport_id;
+
+    @SQLType("VARCHAR(50)")
+    @ColumnConstraints(notNull = true)
+    private String start_location;
+
+    @SQLType("VARCHAR(50)")
+    @ColumnConstraints(notNull = true)
+    private String destination;
    
     @SQLType("VARCHAR(50)") 
     @ColumnConstraints(notNull = true)
@@ -26,6 +34,10 @@ public class Transport implements Model{
     @SQLType("VARCHAR(15)")
     @ColumnConstraints(notNull = true)
     private String contact_number;
+
+    @SQLType("BOOLEAN")
+    @ColumnConstraints(notNull = true)
+    private Boolean status;
 
     public Transport() {
     }
@@ -44,6 +56,22 @@ public class Transport implements Model{
 
     public void setTransport_id(int transport_id) {
         this.transport_id = transport_id;
+    }
+
+    public String getStart_location() {
+        return start_location;
+    }
+
+    public void setStart_location(String start_location) {
+        this.start_location = start_location;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public String getVehicle_type() {
@@ -76,5 +104,13 @@ public class Transport implements Model{
 
     public void setContact_number(String contact_number) {
         this.contact_number = contact_number;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }
