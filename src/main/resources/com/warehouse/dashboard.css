@@ -1,9 +1,63 @@
+.main-form{
+    -fx-background-color: #444444;
+}
+
+.button {
+    -fx-background-color: #fff;
+    -fx-text-fill: #3a3a3a;
+    -fx-font-family: "Raleway";
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.button:hover{
+    -fx-background-color: #a1a1a1;
+}
+
+.button.b1{
+    /* bluish color */
+    -fx-background-color:  #96ffea;
+}
+
+.button.b1:hover{
+    -fx-background-color: #4dd2cc;
+}
+
+.button.b2{
+    -fx-background-color: #f1807e;
+}
+
+.button.b2:hover{
+    -fx-background-color: #b33e3e;
+}
+
+.button.b3{
+    -fx-background-color: #99ff99;
+}
+
+.button.b3:hover{
+    -fx-background-color: #5cb85c;
+}
+
+.button.b4{
+    -fx-background-color: #ffcc99;
+}
+
+.button.b4:hover{
+    -fx-background-color: #ff9933;
+}
+
+.button.b5{
+    -fx-background-color: #ff6666;
+}
+
+.button.b5:hover{
+    -fx-background-color: #ff3333;
+}
+
 .main-label{
     -fx-font-family: "Raleway";
     -fx-font-size: 20px;
     -fx-font-weight: bold;
-}
-
-.graphic{
-    -fx-padding: 0px;
+    -fx-text-fill: #ffffff;
 }

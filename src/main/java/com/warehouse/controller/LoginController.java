@@ -8,6 +8,8 @@ import com.warehouse.util.CFXMLLoader;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -36,10 +38,15 @@ public class LoginController {
         user.setPassword(passwordTxt.getText());
 
         UserDAO userDAO = new UserDAO();
-        boolean isValid = userDAO.login(user);
+        User dbUser = userDAO.login(user);
 
-        if (isValid) {
-            Scene dashboad = new Scene(CFXMLLoader.loadFXML("dashboard"));
+        if (dbUser != null) {
+            FXMLLoader loader = CFXMLLoader.getFXMLLoader("dashboard");
+            Scene dashboad = new Scene(loader.load());
+
+            DashboardController dc = loader.getController();
+            dc.setUser(dbUser);
+            
             Stage stage = (Stage) loginBtn.getScene().getWindow();
             stage.setResizable(true);
             stage.setTitle("Warehouse Management System");
