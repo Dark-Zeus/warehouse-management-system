@@ -17,18 +17,30 @@ public class UserDAO {
         conn = SQLConnector.getConnection("warehouse");
     }
 
-    public boolean login(User user) {
+    public User login(User user) {
         String query = "SELECT * FROM `user` WHERE username = ? AND password = ?";
+
+        User dbUser = new User();
 
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
 
-            return ps.executeQuery().next();
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()) {
+                dbUser.setUser_id(rs.getInt("user_id"));
+                dbUser.setUsername(rs.getString("username"));
+                dbUser.setRole(rs.getString("role"));
+                return dbUser;
+            }
+
+            return null;
+
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 

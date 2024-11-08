@@ -24,10 +24,22 @@
     -fx-background-color:  #fed8b1;
 }
 
+.button.update:hover{
+    -fx-background-color: #ffcc99;
+}
+
 .button.delete{
     -fx-background-color: #f1807e;
 }
 
+.button.delete:hover{
+    -fx-background-color: #b33e3e;
+}
+
 .button.add{
     -fx-background-color: #99ff99;
+}
+
+.button.add:hover{
+    -fx-background-color: #5cb85c;
 }

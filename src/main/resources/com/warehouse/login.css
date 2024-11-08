@@ -16,3 +16,7 @@
     -fx-border-radius: 4px;
     -fx-padding: 8px 16px;
 }
+
+.button:hover{
+    -fx-background-color: #3d9c40;
+}

@@ -2,10 +2,12 @@ package com.warehouse.controller;
 
 import java.io.IOException;
 
+import com.warehouse.model.User;
 import com.warehouse.util.CFXMLLoader;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -25,11 +27,17 @@ public class DashboardController {
     private Button userBtn;
 
     @FXML
+    private Button userManagementBtn;
+
+    @FXML
     private Button warehouseManagementBtn;
+
+
+    private User user;
 
     @FXML
     private void initialize() {
-        System.out.println("DashboardController initialized");
+
     }
 
     @FXML
@@ -48,11 +56,29 @@ public class DashboardController {
     }
 
     @FXML
-    void openUserForm(ActionEvent event) throws IOException {
+    void openUserManagementForm(ActionEvent event) throws IOException {
+        if(!user.isAdmin()) {
+            return;
+        }
         Scene userManagement = new Scene(CFXMLLoader.loadFXML("user_management"));
         Stage stage = new Stage();
         stage.setScene(userManagement);
         stage.setTitle("User Management");
+        stage.setMinWidth(860);
+        stage.setMinHeight(550);
+        stage.show();
+    }
+
+    @FXML
+    void openUserForm(ActionEvent event) throws IOException {
+        FXMLLoader loader = CFXMLLoader.getFXMLLoader("profile");
+        Scene scene = new Scene(loader.load());
+        ProfileController pc = loader.getController();
+        pc.setUser(user);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("User Profile");
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -63,6 +89,15 @@ public class DashboardController {
         stage.setScene(warehouseManagement);
         stage.setTitle("Warehouse Management");
         stage.show();
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+
+        userManagementBtn.setDisable(true);
+        if(user.isAdmin()) {
+            userManagementBtn.setDisable(false);
+        }
     }
 
 }

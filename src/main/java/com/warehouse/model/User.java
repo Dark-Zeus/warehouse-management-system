@@ -15,7 +15,6 @@ public class User implements Model{
     private int user_id;
 
     @SQLType("VARCHAR(50)")
-    @PrimaryKey
     @ColumnConstraints(notNull = true, unique = true)
     private String username;
 
@@ -25,7 +24,7 @@ public class User implements Model{
 
     @SQLType("VARCHAR(20)")
     @ColumnConstraints(notNull = true)
-    private String role;
+    private String role = "user";
 
     public User() {
     }
@@ -68,5 +67,9 @@ public class User implements Model{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Boolean isAdmin() {
+        return role.equals("admin");
     }
 }

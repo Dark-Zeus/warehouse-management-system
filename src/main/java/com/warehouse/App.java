@@ -31,6 +31,7 @@ public class App extends Application {
         scene = new Scene(CFXMLLoader.loadFXML("login"));
         stage.setResizable(false);
         stage.setScene(scene);
+        stage.setTitle("Warehouse Management System");
         stage.show();
     }
 

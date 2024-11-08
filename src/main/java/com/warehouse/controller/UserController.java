@@ -76,6 +76,14 @@ public class UserController {
         newUser.setPassword(passwordTxt.getText());
         newUser.setRole(roleCmb.getValue());
 
+        if(newUser.getUsername().isEmpty() || newUser.getPassword().isEmpty() || newUser.getRole() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please fill all fields");
+            alert.showAndWait();
+            return;
+        }
+
         if(addMode.equals("update")){
             newUser.setUser_id(selectedUserId);
             if(userDAO.updateUser(newUser)){
@@ -89,6 +97,11 @@ public class UserController {
                 usernameTxt.clear();
                 passwordTxt.clear();
                 roleCmb.setValue(null);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("User updated successfully");
+                alert.showAndWait();
             } else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -99,6 +112,10 @@ public class UserController {
         }else{
             if(userDAO.register(newUser)){
                 updateTable();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("User updated successfully");
+                alert.showAndWait();
             } else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -114,8 +131,20 @@ public class UserController {
         UserDAO userDAO = new UserDAO();
         User user = userTable.getSelectionModel().getSelectedItem();
 
+        if(user == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a user to delete");
+            alert.showAndWait();
+            return;
+        }
+
         if(userDAO.deleteUser(user)){
             updateTable();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("User deleted successfully");
+            alert.showAndWait();
         } else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -128,6 +157,14 @@ public class UserController {
     void updateUser(ActionEvent event) {
         UserDAO userDAO = new UserDAO();
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
+
+        if(selectedUser == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a user to update");
+            alert.showAndWait();
+            return;
+        }
 
         User dbUser = userDAO.getUserById(selectedUser);
 
