@@ -84,10 +84,22 @@ public class TransportManagementController {
         transport.setContact_number(contactNumberTxt.getText());
         transport.setStatus(statusCmb.getValue());
 
+        if(transport.getStart_location().isEmpty() || transport.getDestination().isEmpty() || transport.getVehicle_type() == null || transport.getVehicle_number().isEmpty() || transport.getContact_number().isEmpty() || transport.getStatus() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please fill all fields");
+            alert.showAndWait();
+            return;
+        }
+
         if ("update".equals(addMode)) {
             transport.setTransport_id(selectedTransportId);
             if (transportDAO.updateTransport(transport)) {
                 updateTable();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Transport successfully updated");
+                alert.showAndWait();
                 resetForm();
             } else {
                 showAlert("Error", "Transport not updated");
@@ -95,6 +107,10 @@ public class TransportManagementController {
         } else {
             if (transportDAO.addTransport(transport)) {
                 updateTable();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Transport successfully added");
+                alert.showAndWait();
                 resetForm();
             } else {
                 showAlert("Error", "Transport not added");
@@ -107,8 +123,20 @@ public class TransportManagementController {
         TransportDAO transportDAO = new TransportDAO();
         Transport transport = transportTable.getSelectionModel().getSelectedItem();
 
+        if(transport == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a transport to delete");
+            alert.showAndWait();
+            return;
+        }
+
         if (transport != null && transportDAO.deleteTransport(transport.getTransport_id())) {
             updateTable();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Transport successfully deleted");
+            alert.showAndWait();
         } else {
             showAlert("Error", "Transport not deleted");
         }
@@ -117,6 +145,15 @@ public class TransportManagementController {
     @FXML
     void updateTransport(ActionEvent event) {
         Transport transport = transportTable.getSelectionModel().getSelectedItem();
+
+        if(transport == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a transport to update");
+            alert.showAndWait();
+            return;
+        }
+
         if (transport != null) {
             selectedTransportId = transport.getTransport_id();
 
