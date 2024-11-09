@@ -2,7 +2,6 @@ package com.warehouse.model;
 
 import com.warehouse.util.autosql.Model;
 import com.warehouse.util.autosql.annotation.ColumnConstraints;
-import com.warehouse.util.autosql.annotation.ForiegnKey;
 import com.warehouse.util.autosql.annotation.PrimaryKey;
 import com.warehouse.util.autosql.annotation.SQLType;
 import com.warehouse.util.autosql.annotation.Table;

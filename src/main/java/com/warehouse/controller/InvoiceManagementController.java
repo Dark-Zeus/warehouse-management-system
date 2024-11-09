@@ -75,7 +75,7 @@ public class InvoiceManagementController {
         InvoiceDAO invoiceDAO = new InvoiceDAO();
         Invoice newInvoice = new Invoice();
 
-        newInvoice.setUser_id(Integer.parseInt(user_id.getText()));
+        newInvoice.setUser_id(Integer.parseInt(useridTxt.getText()));
         newInvoice.setTotal_amount(Double.parseDouble(totalamountTxt.getText()));
         newInvoice.setDate(dateTxt.getText());
 
@@ -84,12 +84,18 @@ public class InvoiceManagementController {
             if (invoiceDAO.updateInvoice(newInvoice)) {
                 resetForm();
                 updateTable();
+
+                showSuccessAlert("Invoice updated successfully");
+
             } else {
                 showErrorAlert("Invoice not updated");
             }
         } else {
             if (invoiceDAO.addInvoice(newInvoice)) {
+                resetForm();
                 updateTable();
+
+                showSuccessAlert("Invoice added successfully");
             } else {
                 showErrorAlert("Invoice not added");
             }
@@ -109,6 +115,7 @@ public class InvoiceManagementController {
 
         if (selectedInvoice != null && invoiceDAO.deleteInvoice(selectedInvoice.getInvoice_id())) {
             updateTable();
+            showSuccessAlert("Invoice deleted successfully");
         } else {
             showErrorAlert("Invoice not deleted");
         }
@@ -126,9 +133,9 @@ public class InvoiceManagementController {
 
         if (selectedInvoice != null) {
             selectedInvoiceId = selectedInvoice.getInvoice_id();
-            user_id.setText(String.valueOf(selectedInvoice.getUser_id()));
-            total_amount.setText(String.valueOf(selectedInvoice.getTotal_amount()));
-            date.setText(String.valueOf(selectedInvoice.getDate()));
+            useridTxt.setText(String.valueOf(selectedInvoice.getUser_id()));
+            totalamountTxt.setText(String.valueOf(selectedInvoice.getTotal_amount()));
+            dateTxt.setText(String.valueOf(selectedInvoice.getDate()));
 
             addBtn.setText("Update Invoice");
             updateBtn.setDisable(true);
@@ -160,6 +167,13 @@ public class InvoiceManagementController {
     private void showErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
+
+    private void showSuccessAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
         alert.setHeaderText(message);
         alert.showAndWait();
     }

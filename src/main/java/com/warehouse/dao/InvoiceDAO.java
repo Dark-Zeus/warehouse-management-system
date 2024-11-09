@@ -125,10 +125,10 @@ public class InvoiceDAO {
 
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, invoice.getInvoice_id());
-            stmt.setInt(2, invoice.getUser_id());
-            stmt.setDouble(4, invoice.getTotal_amount());
+            stmt.setInt(1, invoice.getUser_id());
+            stmt.setDouble(2, invoice.getTotal_amount());
             stmt.setString(3, invoice.getDate());
+            stmt.setInt(4, invoice.getInvoice_id());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {

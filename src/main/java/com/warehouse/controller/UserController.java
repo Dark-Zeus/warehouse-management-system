@@ -1,7 +1,6 @@
 package com.warehouse.controller;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
