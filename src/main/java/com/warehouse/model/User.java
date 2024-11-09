@@ -37,6 +37,7 @@ public class User implements Model{
         this.role = role;
     }
 
+    // Getters and Setters
     public int getUser_id() {
         return user_id;
     }

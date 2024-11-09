@@ -18,6 +18,10 @@ public class SQLConnector {
     private SQLConnector() {
     }
 
+    /**
+     * Get a connection to the SQL server
+     * @return Connection - {@code Connection} {@link Connection}
+     */
     public static Connection getConnection() {
         if (sqlConnection == null) {
             try {
@@ -32,6 +36,11 @@ public class SQLConnector {
         return sqlConnection;
     }
 
+    /**
+     * Get a connection to the database
+     * @param database - {@code String}
+     * @return Connection - {@code Connection} {@link Connection}
+     */
     public static Connection getConnection(String database) {
         if (dbConnection == null) {
             try {
@@ -47,6 +56,10 @@ public class SQLConnector {
         return dbConnection;
     }
 
+    /**
+     * Close the database connection
+     * @return Connection - {@code Connection} {@link Connection}
+     */
     public static Connection closeDBConnection() {
         if (dbConnection != null) {
             try {
@@ -59,6 +72,10 @@ public class SQLConnector {
         return dbConnection;
     }
 
+    /**
+     * Close the SQL connection
+     * @return Connection - {@code Connection} {@link Connection}
+     */
     public static Connection closeSQLConnection() {
         if (sqlConnection != null) {
             try {

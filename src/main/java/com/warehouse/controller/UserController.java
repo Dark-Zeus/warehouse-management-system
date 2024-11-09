@@ -57,25 +57,27 @@ public class UserController {
 
     @FXML
     private void initialize() {
-        roleCmb.getItems().addAll("Admin", "User");
+        roleCmb.getItems().addAll("Admin", "User"); // Add the roles to the choice box
 
+        // Set the cell value factory for the table columns
         user_id.setCellValueFactory(new PropertyValueFactory<User, Integer>("user_id"));
         username.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
         role.setCellValueFactory(new PropertyValueFactory<User, String>("role"));
 
-        updateTable();
+        updateTable(); // Update the table
     }
 
     @FXML
     void addUser(ActionEvent event) {
-        UserDAO userDAO = new UserDAO();
+        UserDAO userDAO = new UserDAO(); // Create a new UserDAO object
 
-        User newUser = new User();
+        User newUser = new User(); // Create a new User object and set the values
 
         newUser.setUsername(usernameTxt.getText());
         newUser.setPassword(passwordTxt.getText());
         newUser.setRole(roleCmb.getValue());
 
+        // Check if the fields are empty
         if(newUser.getUsername().isEmpty() || newUser.getPassword().isEmpty() || newUser.getRole() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -84,10 +86,15 @@ public class UserController {
             return;
         }
 
+        // Check if the add mode is update
         if(addMode.equals("update")){
-            newUser.setUser_id(selectedUserId);
+            newUser.setUser_id(selectedUserId); // Set the user id
+
+            // Check if the user was updated
             if(userDAO.updateUser(newUser)){
-                updateTable();
+                updateTable(); // Update the table
+
+                // Set the fields to empty and reset the UI
                 addBtn.setText("Add User");
                 updateBtn.setDisable(false);
                 userTable.setDisable(false);
@@ -98,11 +105,13 @@ public class UserController {
                 passwordTxt.clear();
                 roleCmb.setValue(null);
 
+                // Show a success alert
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText("User updated successfully");
                 alert.showAndWait();
             } else{
+                // Show an error alert
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("User not updated");
@@ -110,8 +119,11 @@ public class UserController {
             }
             return;
         }else{
+            // Check if the user was added if the add mode is add
             if(userDAO.register(newUser)){
-                updateTable();
+                updateTable(); // Update the table
+
+                // Show a success alert
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText("User updated successfully");
@@ -128,10 +140,12 @@ public class UserController {
 
     @FXML
     void deleteUser(ActionEvent event) {
-        UserDAO userDAO = new UserDAO();
-        User user = userTable.getSelectionModel().getSelectedItem();
+        UserDAO userDAO = new UserDAO(); // Create a new UserDAO object
+        User user = userTable.getSelectionModel().getSelectedItem();  // Get the selected user
 
+        // Check if the user is null (not selected any rows from the table)
         if(user == null){
+            // Show an error alert
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Please select a user to delete");
@@ -139,6 +153,7 @@ public class UserController {
             return;
         }
 
+        // Check if the user was deleted
         if(userDAO.deleteUser(user)){
             updateTable();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -155,9 +170,10 @@ public class UserController {
 
     @FXML
     void updateUser(ActionEvent event) {
-        UserDAO userDAO = new UserDAO();
-        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+        UserDAO userDAO = new UserDAO(); // Create a new UserDAO object
+        User selectedUser = userTable.getSelectionModel().getSelectedItem(); // Get the selected user
 
+        // Check if the user is null (not selected any rows from the table)
         if(selectedUser == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -166,19 +182,25 @@ public class UserController {
             return;
         }
 
+        // Get the user from the database
         User dbUser = userDAO.getUserById(selectedUser);
 
+        // Set the fields to the selected user values
         selectedUserId = dbUser.getUser_id();
         usernameTxt.setText(dbUser.getUsername());
         passwordTxt.setText(dbUser.getPassword());
         roleCmb.setValue(dbUser.getRole());
 
+        // Set the UI to update mode
         addBtn.setText("Update User");
         updateBtn.setDisable(true);
         userTable.setDisable(true);
         addMode = "update";       
     }
 
+    /**
+     * Update the table with the users retrieved from the database
+     */
     private void updateTable() {
         UserDAO userDAO = new UserDAO();
         List<User> users = userDAO.getAllUsers();

@@ -56,6 +56,7 @@ public class Warehouse implements Model {
         this.capacityProperty.set(capacity);
     }
 
+    // Getters and Setters
     public int getWarehouse_id() {
         return warehouseIdProperty.get();
     }

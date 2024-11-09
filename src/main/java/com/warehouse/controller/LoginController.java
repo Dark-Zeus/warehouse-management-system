@@ -33,17 +33,21 @@ public class LoginController {
     @FXML
     void login(ActionEvent event) throws IOException {
 
-        User user = new User();
+        // Get the user input from the text fields
+        User user = new User(); 
         user.setUsername(usernameTxt.getText());
         user.setPassword(passwordTxt.getText());
 
-        UserDAO userDAO = new UserDAO();
+        UserDAO userDAO = new UserDAO(); // Create a new UserDAO object
         User dbUser = userDAO.login(user);
 
+        // If the user is not null, then the login was successful
         if (dbUser != null) {
+            // Load the dashboard
             FXMLLoader loader = CFXMLLoader.getFXMLLoader("dashboard");
             Scene dashboad = new Scene(loader.load());
 
+            // Get the controller and set the user
             DashboardController dc = loader.getController();
             dc.setUser(dbUser);
             

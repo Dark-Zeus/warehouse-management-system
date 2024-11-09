@@ -40,6 +40,8 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+
+        // Create tables
         String tables = AutoSQL.generateTables("warehouse",
                 User.class,
                 Warehouse.class,
@@ -48,22 +50,26 @@ public class App extends Application {
                 Invoice.class
         );
 
-        System.out.println(tables);
-
+        // Aquire connection
         Connection primaryConn = SQLConnector.getConnection();
 
+        // Execute tables
         AutoSQL.executeInSequence(primaryConn, tables);
 
+        // Close connection
         SQLConnector.closeSQLConnection();
 
+        // Create new connection to the created database
         Connection con = SQLConnector.getConnection("warehouse");
 
+        // Create admin user
         User user = new User();
         user.setUser_id(0);
         user.setUsername("admin");
         user.setPassword("admin");
         user.setRole("admin");
 
+        /* Add the admin record to the database */
         String record = AutoSQL.generateRecord(user, true);
 
         try {
@@ -74,6 +80,7 @@ public class App extends Application {
 
         SQLConnector.closeDBConnection();
 
+        // Launch the application
         launch();
     }
 

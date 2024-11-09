@@ -60,6 +60,7 @@ public class InvoiceManagementController {
 
     @FXML
     private void initialize() {
+        //Set the columns in the table
         invoiceIdColumn.setCellValueFactory(new PropertyValueFactory<>("invoiceId"));
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
         totalAmountColumn.setCellValueFactory(new PropertyValueFactory<>("totalamount"));
@@ -100,6 +101,12 @@ public class InvoiceManagementController {
         InvoiceDAO invoiceDAO = new InvoiceDAO();
         Invoice selectedInvoice = invoiceTable.getSelectionModel().getSelectedItem();
 
+        // Check if an invoice is selected
+        if(selectedInvoice == null) {
+            showErrorAlert("Please select an invoice to delete");
+            return;
+        }
+
         if (selectedInvoice != null && invoiceDAO.deleteInvoice(selectedInvoice.getInvoice_id())) {
             updateTable();
         } else {
@@ -110,6 +117,12 @@ public class InvoiceManagementController {
     @FXML
     void updateInvoice(ActionEvent event) {
         Invoice selectedInvoice = invoiceTable.getSelectionModel().getSelectedItem();
+
+        // Check if an invoice is selected
+        if(selectedInvoice == null) {
+            showErrorAlert("Please select an invoice to update");
+            return;
+        }
 
         if (selectedInvoice != null) {
             selectedInvoiceId = selectedInvoice.getInvoice_id();
@@ -130,6 +143,7 @@ public class InvoiceManagementController {
         invoiceTable.getItems().setAll(invoices);
     }
 
+    // Reset the form to add mode
     private void resetForm() {
         //warehouseCmb.setValue(null);
         useridTxt.clear();
@@ -142,6 +156,7 @@ public class InvoiceManagementController {
         selectedInvoiceId = -1;
     }
 
+    // Show an error alert
     private void showErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");

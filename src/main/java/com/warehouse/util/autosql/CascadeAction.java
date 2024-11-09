@@ -1,5 +1,8 @@
 package com.warehouse.util.autosql;
 
+/**
+ * Enum for cascade actions
+ */
 public enum CascadeAction {
     CASCADE, // Automatically update/delete dependent rows
     SET_NULL, // Set the foreign key column to NULL if parent is deleted/updated
