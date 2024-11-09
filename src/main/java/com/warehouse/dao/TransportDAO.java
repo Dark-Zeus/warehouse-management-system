@@ -30,8 +30,8 @@ public class TransportDAO {
                 transport.setDestination(rs.getString("destination"));
                 transport.setVehicle_type(rs.getString("vehicle_type"));
                 transport.setVehicle_number(rs.getString("vehicle_number"));
-                transport.setDriver_name(rs.getString("driver_name"));
-                transport.setStatus(rs.getBoolean("status"));
+                transport.setContact_number(rs.getString("contact_number"));
+                transport.setStatus(rs.getString("status"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,8 +55,8 @@ public class TransportDAO {
                 transport.setDestination(rs.getString("destination"));
                 transport.setVehicle_type(rs.getString("vehicle_type"));
                 transport.setVehicle_number(rs.getString("vehicle_number"));
-                transport.setDriver_name(rs.getString("driver_name"));
-                transport.setStatus(rs.getBoolean("status"));
+                transport.setContact_number(rs.getString("contact_number"));
+                transport.setStatus(rs.getString("status"));
 
                 transports.add(transport);
             }
@@ -68,7 +68,7 @@ public class TransportDAO {
     }
 
     public boolean addTransport(Transport transport) {
-        String query = "INSERT INTO `transport` (start_location, destination, vehicle_type, vehicle_number, driver_name, status) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO `transport` (start_location, destination, vehicle_type, vehicle_number, contact_number, status) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -76,8 +76,9 @@ public class TransportDAO {
             ps.setString(2, transport.getDestination());
             ps.setString(3, transport.getVehicle_type());
             ps.setString(4, transport.getVehicle_number());
-            ps.setString(5, transport.getDriver_name());
-            ps.setBoolean(6, transport.getStatus());
+            ps.setString(5, transport.getContact_number());
+            ps.setString(6, transport.getStatus());
+            
 
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
@@ -87,17 +88,18 @@ public class TransportDAO {
     }
 
     public boolean updateTransport(Transport transport) {
-        String query = "UPDATE `transport` SET start_location = ?, destination = ?, vehicle_type = ?, vehicle_number = ?, driver_name = ?, status = ? WHERE transport_id = ?";
-
+        String query = "UPDATE `transport` SET start_location = ?, destination = ?, vehicle_type = ?, vehicle_number = ?, contact_number = ?, status = ? WHERE transport_id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, transport.getStart_location());
             ps.setString(2, transport.getDestination());
             ps.setString(3, transport.getVehicle_type());
             ps.setString(4, transport.getVehicle_number());
-            ps.setString(5, transport.getDriver_name());
-            ps.setBoolean(6, transport.getStatus());
+            ps.setString(5, transport.getContact_number());
+            ps.setString(6, transport.getStatus());
             ps.setInt(7, transport.getTransport_id());
+           
+
 
             return ps.executeUpdate() > 0;
         } catch (Exception e) {

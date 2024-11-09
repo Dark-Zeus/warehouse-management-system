@@ -30,11 +30,11 @@ public class TransportManagementController {
     @FXML
     private ChoiceBox<String> vehicletypeCmb;
     @FXML
-    private TextField vehiclenumberTxt;
+    private TextField vehicleNumberTxt;
     @FXML
-    private TextField drivernameTxt;
+    private TextField contactNumberTxt;
     @FXML
-    private ChoiceBox<Boolean> statusChoiceBox;
+    private ChoiceBox<String> statusCmb;
 
     @FXML
     private TableView<Transport> transportTable;
@@ -49,9 +49,9 @@ public class TransportManagementController {
     @FXML
     private TableColumn<Transport, String> vehicle_number;
     @FXML
-    private TableColumn<Transport, String> driver_name;
+    private TableColumn<Transport, String> contact_number;
     @FXML
-    private TableColumn<Transport, Boolean> status;
+    private TableColumn<Transport, String> status;
 
     private String addMode = "add";
     private int selectedTransportId = -1;
@@ -59,14 +59,14 @@ public class TransportManagementController {
     @FXML
     private void initialize() {
         vehicletypeCmb.getItems().addAll("Truck", "Van", "Motorbike");
-        statusChoiceBox.getItems().addAll(true, false);
+        statusCmb.getItems().addAll("On Queue", "On Route", "Completed");
 
         transport_id.setCellValueFactory(new PropertyValueFactory<>("transport_id"));
         start_location.setCellValueFactory(new PropertyValueFactory<>("start_location"));
         destination.setCellValueFactory(new PropertyValueFactory<>("destination"));
         vehicle_type.setCellValueFactory(new PropertyValueFactory<>("vehicle_type"));
         vehicle_number.setCellValueFactory(new PropertyValueFactory<>("vehicle_number"));
-        driver_name.setCellValueFactory(new PropertyValueFactory<>("driver_name"));
+        contact_number.setCellValueFactory(new PropertyValueFactory<>("contact_number"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         updateTable();
@@ -80,9 +80,9 @@ public class TransportManagementController {
         transport.setStart_location(startlocationTxt.getText());
         transport.setDestination(destinationTxt.getText());
         transport.setVehicle_type(vehicletypeCmb.getValue());
-        transport.setVehicle_number(vehiclenumberTxt.getText());
-        transport.setDriver_name(drivernameTxt.getText());
-        transport.setStatus(statusChoiceBox.getValue());
+        transport.setVehicle_number(vehicleNumberTxt.getText());
+        transport.setContact_number(contactNumberTxt.getText());
+        transport.setStatus(statusCmb.getValue());
 
         if ("update".equals(addMode)) {
             transport.setTransport_id(selectedTransportId);
@@ -123,9 +123,9 @@ public class TransportManagementController {
             startlocationTxt.setText(transport.getStart_location());
             destinationTxt.setText(transport.getDestination());
             vehicletypeCmb.setValue(transport.getVehicle_type());
-            vehiclenumberTxt.setText(transport.getVehicle_number());
-            drivernameTxt.setText(transport.getDriver_name());
-            statusChoiceBox.setValue(transport.getStatus());
+            vehicleNumberTxt.setText(transport.getVehicle_number());
+            contactNumberTxt.setText(transport.getContact_number());
+            statusCmb.setValue(transport.getStatus());
 
             addBtn.setText("Update Transport");
             updateBtn.setDisable(true);
@@ -144,9 +144,9 @@ public class TransportManagementController {
         startlocationTxt.clear();
         destinationTxt.clear();
         vehicletypeCmb.setValue(null);
-        vehiclenumberTxt.clear();
-        drivernameTxt.clear();
-        statusChoiceBox.setValue(null);
+        vehicleNumberTxt.clear();
+        contactNumberTxt.clear();
+        statusCmb.setValue(null);
 
         addBtn.setText("Add Transport");
         updateBtn.setDisable(false);
