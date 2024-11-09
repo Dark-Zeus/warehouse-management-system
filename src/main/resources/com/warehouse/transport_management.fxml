@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1105.0" stylesheets="@user_management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.warehouse.controller.UserController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1105.0" stylesheets="@user_management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.warehouse.controller.TransportManagementController">
    <children>
       <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
@@ -28,13 +28,13 @@
                   <TableView fx:id="transportTable" maxHeight="1.7976931348623157E308" prefHeight="440.0" prefWidth="518.0" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="transport_id" prefWidth="78.85714936256409" text="transport_id" />
-                        <TableColumn fx:id="start_location" prefWidth="100.0" text="start_location" />
-                        <TableColumn fx:id="destination" prefWidth="77.0" text="destination" />
-                        <TableColumn fx:id="vehicle_type" prefWidth="90.0" text="vehicle_type" />
-                        <TableColumn fx:id="vehicle_number" prefWidth="103.0" text="vehicle_number" />
-                        <TableColumn fx:id="contact_number" prefWidth="103.0" text="contact_number" />
-                        <TableColumn fx:id="driver_name" prefWidth="110.0" text="driver_name" />
-                        <TableColumn fx:id="status" prefWidth="119.0" text="status" />
+                        <TableColumn fx:id="start_location" prefWidth="114.0" text="start_location" />
+                        <TableColumn fx:id="destination" prefWidth="111.0" text="destination" />
+                        <TableColumn fx:id="vehicle_type" prefWidth="101.0" text="vehicle_type" />
+                        <TableColumn fx:id="vehicle_number" prefWidth="143.0" text="vehicle_number" />
+                        <TableColumn fx:id="contact_number" prefWidth="138.0" text="contact_number" />
+                      
+                        <TableColumn fx:id="status" prefWidth="95.0" text="status" />
                      </columns>
                   </TableView>
                </children>
@@ -48,13 +48,13 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="updateBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateUser" prefWidth="217.0" text="Update">
+                  <Button fx:id="updateBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateTransport" prefWidth="217.0" text="Update">
                      <styleClass>
                         <String fx:value="button" />
                         <String fx:value="update" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="deleteBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteUser" text="Delete" GridPane.columnIndex="1">
+                  <Button fx:id="deleteBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteTransport" text="Delete" GridPane.columnIndex="1">
                      <styleClass>
                         <String fx:value="button" />
                         <String fx:value="delete" />
@@ -74,15 +74,18 @@
                         <String fx:value="light-txt" />
                      </styleClass>
                   </Label>
-                  <TextField fx:id="startlocationTxt" prefHeight="30.0" promptText="User Name" text="Start Location" />
-                  <TextField fx:id="destinationTxt" prefHeight="30.0" promptText="Password" text="Destination" />
+                  <TextField fx:id="startlocationTxt" prefHeight="30.0" promptText="Start Location" />
+                  <TextField fx:id="destinationTxt" prefHeight="30.0" promptText="Destination" />
                   <ChoiceBox fx:id="vehicletypeCmb" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="150.0" />
+                  <TextField fx:id="vehicleNumberTxt" prefHeight="30.0" promptText="Plate Number" />
+                  <TextField fx:id="contactNumberTxt" prefHeight="30.0" promptText="Contact Number" />
+                  <ChoiceBox fx:id="statusCmb" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="150.0" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="40.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
-            <Button fx:id="addBtn" layoutX="31.0" layoutY="523.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addUser" prefHeight="58.0" prefWidth="221.0" text="Add Transport" AnchorPane.bottomAnchor="40.0">
+            <Button fx:id="addBtn" layoutX="31.0" layoutY="523.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addTransport" prefHeight="58.0" prefWidth="221.0" text="Add Transport" AnchorPane.bottomAnchor="40.0">
                <styleClass>
                   <String fx:value="button" />
                   <String fx:value="add" />

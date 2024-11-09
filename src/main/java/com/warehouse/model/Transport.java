@@ -10,6 +10,14 @@ public class Transport implements Model{
     @PrimaryKey
     @ColumnConstraints(autoIncrement = true)
     private int transport_id;
+
+    @SQLType("VARCHAR(50)")
+    @ColumnConstraints(notNull = true)
+    private String start_location;
+
+    @SQLType("VARCHAR(50)")
+    @ColumnConstraints(notNull = true)
+    private String destination;
    
     @SQLType("VARCHAR(50)") 
     @ColumnConstraints(notNull = true)
@@ -18,14 +26,14 @@ public class Transport implements Model{
     @SQLType("VARCHAR(20)")
     @ColumnConstraints(notNull = true, unique = true)
     private String vehicle_number;
-  
-    @SQLType("VARCHAR(50)")
-    @ColumnConstraints(notNull = true)
-    private String driver_name;
 
     @SQLType("VARCHAR(15)")
     @ColumnConstraints(notNull = true)
     private String contact_number;
+
+    @SQLType("VARCHAR(20)")
+    @ColumnConstraints(notNull = true)
+    private String status;
 
     public Transport() {
     }
@@ -34,7 +42,6 @@ public class Transport implements Model{
         this.transport_id = transport_id;
         this.vehicle_type = vehicle_type;
         this.vehicle_number = vehicle_number;
-        this.driver_name = driver_name;
         this.contact_number = contact_number;
     }
 
@@ -44,6 +51,22 @@ public class Transport implements Model{
 
     public void setTransport_id(int transport_id) {
         this.transport_id = transport_id;
+    }
+
+    public String getStart_location() {
+        return start_location;
+    }
+
+    public void setStart_location(String start_location) {
+        this.start_location = start_location;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public String getVehicle_type() {
@@ -62,13 +85,13 @@ public class Transport implements Model{
         this.vehicle_number = vehicle_number;
     }
 
-    public String getDriver_name() {
-        return driver_name;
-    }
+    //public String getDriver_name() {
+      //  return driver_name;
+    //}
 
-    public void setDriver_name(String driver_name) {
-        this.driver_name = driver_name;
-    }
+    //public void setDriver_name(String driver_name) {
+    //    this.driver_name = driver_name;
+    //}
 
     public String getContact_number() {
         return contact_number;
@@ -76,5 +99,13 @@ public class Transport implements Model{
 
     public void setContact_number(String contact_number) {
         this.contact_number = contact_number;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -51,8 +51,12 @@ public class DashboardController {
     }
 
     @FXML
-    void openTransportMangementForm(ActionEvent event) {
-
+    void openTransportMangementForm(ActionEvent event) throws IOException {
+        Scene transportManagement = new Scene(CFXMLLoader.loadFXML("transport_management"));
+        Stage stage = new Stage();
+        stage.setScene(transportManagement);
+        stage.setTitle("Transport Management");
+        stage.show();
     }
 
     @FXML
