@@ -7,14 +7,6 @@ import com.warehouse.util.autosql.annotation.PrimaryKey;
 import com.warehouse.util.autosql.annotation.SQLType;
 
 public class Invoice implements Model {
-    // CREATE TABLE Invoices (
-    // invoice_id INT PRIMARY KEY AUTO_INCREMENT,
-    // user_id INT,
-    // total_amount DECIMAL(10, 2),
-    // date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    // FOREIGN KEY (user_id) REFERENCES Users(user_id)
-    // );
-
     @SQLType("INT")
     @PrimaryKey
     @ColumnConstraints(autoIncrement = true)
@@ -43,6 +35,7 @@ public class Invoice implements Model {
         this.date = date;
     }
 
+    // Getters and Setters
     public int getInvoice_id() {
         return invoice_id;
     }

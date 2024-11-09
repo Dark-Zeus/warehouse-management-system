@@ -38,6 +38,7 @@ public class Transport implements Model{
     public Transport() {
     }
 
+    // Getters and Setters
     public Transport(int transport_id, String vehicle_type, String vehicle_number, String driver_name, String contact_number) {
         this.transport_id = transport_id;
         this.vehicle_type = vehicle_type;

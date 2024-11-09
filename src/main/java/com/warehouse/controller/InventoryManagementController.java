@@ -63,7 +63,7 @@ public class InventoryManagementController {
 
     @FXML
     private void initialize() {
-
+        // Set the cell value factories for the table columns
         inventory_id.setCellValueFactory(new PropertyValueFactory<>("inventory_id"));
         // Populate the warehouse ChoiceBox with example values (e.g., Warehouse IDs)
         warehouseCmb.getItems().addAll("1", "2", "3");
@@ -78,15 +78,17 @@ public class InventoryManagementController {
     void addInventory(ActionEvent event) {
         InventoryDAO inventoryDAO = new InventoryDAO();
 
-        Inventory newInventory = new Inventory();
+        Inventory newInventory = new Inventory(); // Create a new Inventory object and set the values
 
         newInventory.setWarehouse_id(Integer.parseInt(warehouseCmb.getValue()));
         newInventory.setProduct_name(productNameTxt.getText());
         newInventory.setQuantity(Integer.parseInt(quantityTxt.getText()));
         newInventory.setUnit_price(Double.parseDouble(unitPriceTxt.getText()));
 
+        // Check if the addMode is 'update'
         if (addMode.equals("update")) {
             newInventory.setInventory_id(selectedInventoryId);
+            // Update the inventory
             if (inventoryDAO.updateInventory(newInventory)) {
                 updateTable();
                 addBtn.setText("Add Inventory");
@@ -107,6 +109,7 @@ public class InventoryManagementController {
             }
             return;
         } else {
+            // Add a new inventory to the database
             if (inventoryDAO.addInventory(newInventory)) {
                 updateTable();
             } else {
@@ -121,7 +124,16 @@ public class InventoryManagementController {
     @FXML
     void deleteInventory(ActionEvent event) {
         InventoryDAO inventoryDAO = new InventoryDAO();
-        Inventory inventory = inventoryTable.getSelectionModel().getSelectedItem();
+        Inventory inventory = inventoryTable.getSelectionModel().getSelectedItem(); // Get the selected inventory
+
+        // Check if an inventory is selected
+        if(inventory == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select an inventory to delete");
+            alert.showAndWait();
+            return;
+        }
 
         if (inventoryDAO.deleteInventory(inventory.getInventory_id())) {
             updateTable();
@@ -139,8 +151,18 @@ public class InventoryManagementController {
         InventoryDAO inventoryDAO = new InventoryDAO();
         Inventory selectedInventory = inventoryTable.getSelectionModel().getSelectedItem();
 
-        Inventory dbInventory = inventoryDAO.getInventoryById(selectedInventory);
+        // Check if an inventory row is selected in the table
+        if(selectedInventory == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select an inventory to update");
+            alert.showAndWait();
+            return;
+        }
 
+        Inventory dbInventory = inventoryDAO.getInventoryById(selectedInventory); // Get the inventory from the database
+
+        // Set the values in the form
         selectedInventoryId = dbInventory.getInventory_id();
         warehouseCmb.setValue(String.valueOf(dbInventory.getWarehouse_id()));
         productNameTxt.setText(dbInventory.getProduct_name());
@@ -153,6 +175,9 @@ public class InventoryManagementController {
         addMode = "update";
     }
 
+    /**
+     * Update the inventory table with the latest data
+     */
     private void updateTable() {
         InventoryDAO inventoryDAO = new InventoryDAO();
         List<Inventory> inventories = inventoryDAO.getAllInventories();

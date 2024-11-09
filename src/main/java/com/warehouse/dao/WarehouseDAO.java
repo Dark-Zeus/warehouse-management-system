@@ -10,10 +10,16 @@ import java.util.List;
 import com.warehouse.model.Warehouse;
 import com.warehouse.util.SQLConnector;
 
+/**
+ * Warehouse Data Access Object class for handling database operations related to Warehouse
+ */
 public class WarehouseDAO {
 
     Connection conn = null;
 
+    /**
+     * Constructor
+     */
     public WarehouseDAO() {
         conn = SQLConnector.getConnection("warehouse");
     }

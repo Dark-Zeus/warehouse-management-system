@@ -1,6 +1,14 @@
 .login-container{
    -fx-padding: 40px 20px 0px 20px;
    -fx-font-family: "Raleway";
+   -fx-background-color: #444;
+}
+
+.main-label{
+    -fx-font-family: "Raleway";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #fff;
 }
 
 .text-input{

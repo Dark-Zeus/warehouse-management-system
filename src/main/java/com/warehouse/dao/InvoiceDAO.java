@@ -10,6 +10,9 @@ import java.util.List;
 import com.warehouse.model.Invoice;
 import com.warehouse.util.SQLConnector;
 
+/**
+ * Invoice Data Access Object class for handling database operations related to Invoice
+ */
 public class InvoiceDAO {
     private Connection conn;
 
@@ -17,6 +20,11 @@ public class InvoiceDAO {
         conn = SQLConnector.getConnection("warehouse");
     }
 
+    /**
+     * Get invoice by ID
+     * @param invoiceId - {@code int}
+     * @return Invoice - {@code Invoice} {@link Invoice}
+     */
     public Invoice getInvoiceById(int invoiceId) {
         String sql = "SELECT * FROM `invoice` WHERE invoice_id = ?";
         Invoice invoice = null;
@@ -39,6 +47,10 @@ public class InvoiceDAO {
         return invoice;
     }
 
+    /**
+     * Get all invoices from the database
+     * @return List<Invoice> - {@code List<Invoice>} {@link Invoice}
+     */
     public List<Invoice> getAllInvoices() {
         List<Invoice> invoices = new ArrayList<>();
         String sql = "SELECT * FROM `invoice`";
@@ -62,6 +74,11 @@ public class InvoiceDAO {
         return invoices;
     }
 
+    /**
+     * Add a new invoice to the database
+     * @param invoice - {@code Invoice} {@link Invoice}
+     * @return boolean - {@code boolean} {@link boolean}
+     */
     public boolean addInvoice(Invoice invoice) {
         String sql = "INSERT INTO `invoice` (invoice_id, user_id, total_amount, date) VALUES (?, ?, ?, ?)";
 
@@ -79,6 +96,11 @@ public class InvoiceDAO {
         }
     }
 
+    /**
+     * Delete an invoice from the database
+     * @param invoiceId - {@code int}
+     * @return boolean - {@code boolean} {@link boolean}
+     */
     public boolean deleteInvoice(int invoiceId) {
         String sql = "DELETE FROM `invoice` WHERE invoice_id = ?";
 
@@ -93,6 +115,11 @@ public class InvoiceDAO {
         }
     }
 
+    /**
+     * Update invoice details in the database
+     * @param invoice - {@code Invoice} {@link Invoice}
+     * @return boolean - {@code boolean} {@link boolean}
+     */
     public boolean updateInvoice(Invoice invoice) {
         String sql = "UPDATE `invoice` SET user_id = ?, total_amount = ?, date = ? WHERE invoice_id = ?";
 

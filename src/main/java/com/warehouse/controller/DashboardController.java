@@ -40,27 +40,57 @@ public class DashboardController {
 
     }
 
+    /**
+     * Open the inventory management form
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void openInventoryManagementForm(ActionEvent event) {
+    void openInventoryManagementForm(ActionEvent event) throws IOException {
+        Scene inventoryManagement = new Scene(CFXMLLoader.loadFXML("inventory_management"));
+        Stage stage = new Stage();
+        stage.setScene(inventoryManagement);
+        stage.setTitle("Inventory Management");
+        stage.show();
+    }
+
+    /**
+     * Open the invoice management form
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void openInvoiceManagementForm(ActionEvent event) throws IOException {
+        Scene invoiceManagement = new Scene(CFXMLLoader.loadFXML("invoice_management"));
+        Stage stage = new Stage();
+        stage.setScene(invoiceManagement);
+        stage.setTitle("Invoice Management");
+        stage.show();
 
     }
 
-    @FXML
-    void openInvoiceManagementForm(ActionEvent event) {
-
-    }
-
+    /**
+     * Open the transport management form
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void openTransportMangementForm(ActionEvent event) throws IOException {
         Scene transportManagement = new Scene(CFXMLLoader.loadFXML("transport_management"));
         Stage stage = new Stage();
         stage.setScene(transportManagement);
         stage.setTitle("Transport Management");
+
         stage.setMinWidth(1100);
         stage.setMinHeight(620);
         stage.show();
     }
 
+    /**
+     * Open the user management form
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void openUserManagementForm(ActionEvent event) throws IOException {
         if(!user.isAdmin()) {
@@ -75,6 +105,11 @@ public class DashboardController {
         stage.show();
     }
 
+    /**
+     * Open the user form (profile)
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void openUserForm(ActionEvent event) throws IOException {
         FXMLLoader loader = CFXMLLoader.getFXMLLoader("profile");
@@ -97,12 +132,17 @@ public class DashboardController {
         stage.show();
     }
 
+    /**
+     * Set the user
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
 
-        userManagementBtn.setDisable(true);
+        userManagementBtn.setDisable(true); // Disable the user management button by default (Admin only)
+        // Check if the user is an admin
         if(user.isAdmin()) {
-            userManagementBtn.setDisable(false);
+            userManagementBtn.setDisable(false); // Enable the user management button
         }
     }
 

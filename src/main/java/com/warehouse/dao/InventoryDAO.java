@@ -10,6 +10,9 @@ import java.util.List;
 import com.warehouse.model.Inventory;
 import com.warehouse.util.SQLConnector;
 
+/**
+ * Inventory Data Access Object class for handling database operations related to Inventory
+ */
 public class InventoryDAO {
     Connection conn = null;
 
@@ -17,6 +20,11 @@ public class InventoryDAO {
         conn = SQLConnector.getConnection("warehouse");
     }
 
+    /**
+     * Get inventory by ID
+     * @param inventory
+     * @return
+     */
     public Inventory getInventoryById(Inventory inventory){
         String sql = "SELECT * FROM `inventory` WHERE inventory_id = ?"; // Ensure 'Inventory' table is correct in your DB
 
@@ -38,7 +46,10 @@ public class InventoryDAO {
         return inventory;
     }
 
-    // Get all inventories from the database
+    /**
+     * Get all inventories from the database
+     * @return List<Inventory> - {@code List<Inventory>} {@link Inventory}
+     */
     public List<Inventory> getAllInventories() {
         List<Inventory> inventories = new ArrayList<>();
         String sql = "SELECT * FROM `inventory`"; // Ensure 'Inventory' table is correct in your DB
@@ -64,7 +75,11 @@ public class InventoryDAO {
         return inventories;
     }
 
-    // Add a new inventory to the database
+    /**
+     * Add a new inventory to the database
+     * @param inventory
+     * @return
+     */
     public boolean addInventory(Inventory inventory) {
         String sql = "INSERT INTO `inventory` (warehouse_id, product_name, quantity, unit_price) VALUES (?, ?, ?, ?)"; // Adjust column
                                                                                                     // names
@@ -83,7 +98,11 @@ public class InventoryDAO {
         }
     }
 
-    // Delete a invententory from the database
+    /**
+     * Delete an inventory from the database
+     * @param inventoryId
+     * @return
+     */
     public boolean deleteInventory(int inventoryId) {
         String sql = "DELETE FROM `inventory` WHERE inventory_id = ?"; // 'inventory_id' matches column name
         
@@ -98,7 +117,11 @@ public class InventoryDAO {
         }
     }
 
-    // Update inventory details in the database
+    /**
+     * Update inventory details in the database
+     * @param inventory
+     * @return
+     */
     public boolean updateInventory(Inventory inventory) {
         String sql = "UPDATE `inventory` SET warehouse_id = ?, product_name = ?, quantity = ?, unit_price = ? WHERE inventory_id = ?"; 
         // Adjust column names

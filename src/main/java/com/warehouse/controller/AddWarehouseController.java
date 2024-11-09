@@ -50,6 +50,10 @@ public class AddWarehouseController {
 
     WarehouseManagementController warehouseManagementController;
 
+    /**
+     * Setter method to set the WarehouseManagementController (parent controller)
+     * @param warehouseManagementController
+     */
     public void setWMController(WarehouseManagementController warehouseManagementController) {
         this.warehouseManagementController = warehouseManagementController;
     }

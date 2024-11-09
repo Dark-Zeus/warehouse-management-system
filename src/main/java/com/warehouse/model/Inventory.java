@@ -7,15 +7,6 @@ import com.warehouse.util.autosql.annotation.PrimaryKey;
 import com.warehouse.util.autosql.annotation.SQLType;
 import com.warehouse.util.autosql.annotation.Table;
 
-// CREATE TABLE Inventory (
-//   inventory_id INT PRIMARY KEY AUTO_INCREMENT,
-//   warehouse_id INT,
-//   product_name VARCHAR(50),
-//   quantity INT,
-//   unit_price DECIMAL(10, 2),
-//   FOREIGN KEY (warehouse_id) REFERENCES Warehouses(warehouse_id)
-// );
-
 @Table("inventory")
 public class Inventory implements Model {
     @SQLType("INT")
@@ -50,6 +41,7 @@ public class Inventory implements Model {
         this.unit_price = unit_price;
     }
 
+    // Getters and Setters
     public int getInventory_id() {
         return inventory_id;
     }

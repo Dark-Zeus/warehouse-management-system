@@ -12,7 +12,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="310.0" maxWidth="300.0" minHeight="310.0" minWidth="300.0" prefHeight="310.0" prefWidth="300.0" spacing="25.0" style="-: 0;" styleClass="login-container" stylesheets="@login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.warehouse.controller.LoginController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="65.0" text="Login" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="65.0" styleClass="main-label" text="Login" textAlignment="CENTER">
          <font>
             <Font name="Raleway Bold" size="24.0" />
          </font>
