@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="839.0" stylesheets="@inventory_management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="839.0" stylesheets="@inventory_management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.warehouse.controller.InventoryManagementController">
    <children>
       <VBox prefHeight="354.0" prefWidth="558.0" stylesheets="@inventory_management.css">
          <padding>
@@ -49,8 +49,8 @@
                   <Insets bottom="40.0" left="50.0" right="50.0" top="40.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="updateBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateUser" prefWidth="217.0" styleClass="update" text="Update" />
-                  <Button fx:id="deleteBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteUser" styleClass="delete" text="Delete" GridPane.columnIndex="1" />
+                  <Button fx:id="updateBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateInventory" prefWidth="217.0" styleClass="update" text="Update" />
+                  <Button fx:id="deleteBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteInventory" styleClass="delete" text="Delete" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>
@@ -74,7 +74,7 @@
             <TextField fx:id="quantityTxt" prefHeight="30.0" promptText="Quantity" />
             <TextField fx:id="unitPriceTxt" prefHeight="30.0" promptText="Unit Price" />
             <Pane prefHeight="25.0" prefWidth="221.0" />
-            <Button fx:id="addBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addUser" prefHeight="55.0" prefWidth="221.0" styleClass="add" text="Add" />
+            <Button fx:id="addBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addInventory" prefHeight="55.0" prefWidth="221.0" styleClass="add" text="Add" />
          </children>
       </VBox>
    </children>

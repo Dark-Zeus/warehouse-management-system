@@ -133,7 +133,7 @@ public class InventoryDAO {
             stmt.setString(2, inventory.getProduct_name()); // 'product_name'
             stmt.setInt(3, inventory.getQuantity()); // 'quantity'
             stmt.setDouble(4, inventory.getUnit_price()); // 'unit_price'
-            stmt.setInt(4, inventory.getInventory_id()); // 'inventory_id'
+            stmt.setInt(5, inventory.getInventory_id()); // 'inventory_id'
 
             return stmt.executeUpdate() > 0;
         } catch (Exception e) {

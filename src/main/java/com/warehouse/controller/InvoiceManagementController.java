@@ -20,16 +20,16 @@ public class InvoiceManagementController {
     private TableView<Invoice> invoiceTable;
 
     @FXML
-    private TableColumn<Invoice, Integer> invoiceIdColumn;
+    private TableColumn<Invoice, Integer> invoice_id;
 
     @FXML
-    private TableColumn<Invoice, Integer> userIdColumn;
+    private TableColumn<Invoice, Integer> user_id;
 
     @FXML
-    private TableColumn<Invoice, String> totalAmountColumn;
+    private TableColumn<Invoice, String> total_amount;
 
     @FXML
-    private TableColumn<Invoice, Integer> dateColumn;
+    private TableColumn<Invoice, Integer> date;
 
     //@FXML
     //private TableColumn<Invoice, Double> unitPriceColumn;
@@ -61,10 +61,10 @@ public class InvoiceManagementController {
     @FXML
     private void initialize() {
         //Set the columns in the table
-        invoiceIdColumn.setCellValueFactory(new PropertyValueFactory<>("invoiceId"));
-        userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        totalAmountColumn.setCellValueFactory(new PropertyValueFactory<>("totalamount"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        invoice_id.setCellValueFactory(new PropertyValueFactory<>("invoice_id"));
+        user_id.setCellValueFactory(new PropertyValueFactory<>("user_id"));
+        total_amount.setCellValueFactory(new PropertyValueFactory<>("total_amount"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         //warehouseCmb.getItems().addAll("1", "2", "3");  // Example warehouse IDs
         updateTable();
@@ -75,7 +75,7 @@ public class InvoiceManagementController {
         InvoiceDAO invoiceDAO = new InvoiceDAO();
         Invoice newInvoice = new Invoice();
 
-        newInvoice.setUser_id(Integer.parseInt(userIdColumn.getText()));
+        newInvoice.setUser_id(Integer.parseInt(user_id.getText()));
         newInvoice.setTotal_amount(Double.parseDouble(totalamountTxt.getText()));
         newInvoice.setDate(dateTxt.getText());
 
@@ -126,9 +126,9 @@ public class InvoiceManagementController {
 
         if (selectedInvoice != null) {
             selectedInvoiceId = selectedInvoice.getInvoice_id();
-            userIdColumn.setText(String.valueOf(selectedInvoice.getUser_id()));
-            totalAmountColumn.setText(String.valueOf(selectedInvoice.getTotal_amount()));
-            dateColumn.setText(String.valueOf(selectedInvoice.getDate()));
+            user_id.setText(String.valueOf(selectedInvoice.getUser_id()));
+            total_amount.setText(String.valueOf(selectedInvoice.getTotal_amount()));
+            date.setText(String.valueOf(selectedInvoice.getDate()));
 
             addBtn.setText("Update Invoice");
             updateBtn.setDisable(true);

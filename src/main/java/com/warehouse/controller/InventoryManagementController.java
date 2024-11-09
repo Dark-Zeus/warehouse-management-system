@@ -16,6 +16,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import com.warehouse.dao.InventoryDAO;
 import com.warehouse.model.Inventory;
+import com.warehouse.dao.WarehouseDAO;
+import com.warehouse.model.Warehouse;
 
 public class InventoryManagementController {
 
@@ -66,8 +68,17 @@ public class InventoryManagementController {
         // Set the cell value factories for the table columns
         inventory_id.setCellValueFactory(new PropertyValueFactory<>("inventory_id"));
         // Populate the warehouse ChoiceBox with example values (e.g., Warehouse IDs)
-        warehouseCmb.getItems().addAll("1", "2", "3");
-        productname.setCellValueFactory(new PropertyValueFactory<>("productname"));
+
+        WarehouseDAO warehouseDAO = new WarehouseDAO();
+        List<Warehouse> warehouses = warehouseDAO.getAllWarehouses();
+        List<String> warehouseIds = new ArrayList<>();
+        for (Warehouse warehouse : warehouses) {
+            warehouseIds.add(String.valueOf(warehouse.getWarehouse_id()));
+        }
+        warehouseCmb.getItems().setAll(warehouseIds);
+
+        warehouse_id.setCellValueFactory(new PropertyValueFactory<>("warehouse_id"));
+        productname.setCellValueFactory(new PropertyValueFactory<>("product_name"));
         quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         unit_price.setCellValueFactory(new PropertyValueFactory<>("unit_price"));
 
@@ -91,6 +102,7 @@ public class InventoryManagementController {
             // Update the inventory
             if (inventoryDAO.updateInventory(newInventory)) {
                 updateTable();
+
                 addBtn.setText("Add Inventory");
                 updateBtn.setDisable(false);
                 inventoryTable.setDisable(false);
@@ -101,6 +113,11 @@ public class InventoryManagementController {
                 productNameTxt.clear();
                 quantityTxt.clear();
                 unitPriceTxt.clear();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Inventory updated successfully");
+                alert.showAndWait();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -112,6 +129,16 @@ public class InventoryManagementController {
             // Add a new inventory to the database
             if (inventoryDAO.addInventory(newInventory)) {
                 updateTable();
+
+                warehouseCmb.setValue(null);
+                productNameTxt.clear();
+                quantityTxt.clear();
+                unitPriceTxt.clear();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Inventory added successfully");
+                alert.showAndWait();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -137,6 +164,11 @@ public class InventoryManagementController {
 
         if (inventoryDAO.deleteInventory(inventory.getInventory_id())) {
             updateTable();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Inventory deleted successfully");
+            alert.showAndWait();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
