@@ -56,6 +56,8 @@ public class DashboardController {
         Stage stage = new Stage();
         stage.setScene(transportManagement);
         stage.setTitle("Transport Management");
+        stage.setMinWidth(1100);
+        stage.setMinHeight(620);
         stage.show();
     }
 
