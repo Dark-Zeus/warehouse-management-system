@@ -25,15 +25,9 @@ public class Invoice implements Model {
     @ColumnConstraints(defaultValue = "CURRENT_TIMESTAMP")
     private String date;
 
-    @SQLType("TIME")
-    @ColumnConstraints(defaultValue = "CURRENT_TIME")
-    private String time;
-
-    // Default constructor
     public Invoice() {
     }
 
-    // Constructor with parameters
     public Invoice(int invoice_id, int user_id, double total_amount, String date) {
         this.invoice_id = invoice_id;
         this.user_id = user_id;
@@ -73,13 +67,5 @@ public class Invoice implements Model {
     public void setDate(String date) {
         this.date = date;
     }
-
-    public void setTime(String time) {
-
-        this.time = time;
-
-    }
-
-
 
 }
