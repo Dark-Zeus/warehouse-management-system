@@ -1,14 +1,18 @@
 package com.warehouse.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.warehouse.dao.InvoiceDAO;
+import com.warehouse.dao.UserDAO;
 import com.warehouse.model.Invoice;
+import com.warehouse.model.User;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,10 +39,10 @@ public class InvoiceManagementController {
     //private TableColumn<Invoice, Double> unitPriceColumn;
 
     //@FXML
-    //private ChoiceBox<String> warehouseCmb;
+    //private ChoiceBox<String> userCmb;
 
     @FXML
-    private TextField useridTxt;
+    private ChoiceBox<Integer> userCmb;
 
     @FXML
     private TextField totalamountTxt;
@@ -66,7 +70,14 @@ public class InvoiceManagementController {
         total_amount.setCellValueFactory(new PropertyValueFactory<>("total_amount"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-        //warehouseCmb.getItems().addAll("1", "2", "3");  // Example warehouse IDs
+        UserDAO userDAO = new UserDAO();
+        List<User> users = userDAO.getAllUsers();
+        List<Integer> userIds = new ArrayList<>();
+        for (User user : users) {
+            userIds.add(user.getUser_id());
+        }
+        userCmb.getItems().setAll(userIds);
+
         updateTable();
     }
 
@@ -75,7 +86,7 @@ public class InvoiceManagementController {
         InvoiceDAO invoiceDAO = new InvoiceDAO();
         Invoice newInvoice = new Invoice();
 
-        newInvoice.setUser_id(Integer.parseInt(useridTxt.getText()));
+        newInvoice.setUser_id(userCmb.getValue());
         newInvoice.setTotal_amount(Double.parseDouble(totalamountTxt.getText()));
         newInvoice.setDate(dateTxt.getText());
 
@@ -133,7 +144,7 @@ public class InvoiceManagementController {
 
         if (selectedInvoice != null) {
             selectedInvoiceId = selectedInvoice.getInvoice_id();
-            useridTxt.setText(String.valueOf(selectedInvoice.getUser_id()));
+            userCmb.setValue(selectedInvoice.getUser_id());
             totalamountTxt.setText(String.valueOf(selectedInvoice.getTotal_amount()));
             dateTxt.setText(String.valueOf(selectedInvoice.getDate()));
 
@@ -152,8 +163,8 @@ public class InvoiceManagementController {
 
     // Reset the form to add mode
     private void resetForm() {
-        //warehouseCmb.setValue(null);
-        useridTxt.clear();
+        //userCmb.setValue(null);
+        userCmb.getSelectionModel().clearSelection();
         totalamountTxt.clear();
         dateTxt.clear();
         addBtn.setText("Add Invoice");
