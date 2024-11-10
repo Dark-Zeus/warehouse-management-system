@@ -20,17 +20,17 @@
    <children>
       <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="537.0" prefWidth="571.0" HBox.hgrow="ALWAYS">
          <children>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="547.0" stylesheets="@inventory_management.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="547.0" spacing="40.0" stylesheets="@inventory_management.css" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <padding>
-                  <Insets left="20.0" right="20.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <children>
                   <Label styleClass="main-label" text="Inventory Management">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="150.0" top="20.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
-                  <TableView fx:id="inventoryTable" maxHeight="1.7976931348623157E308" prefHeight="281.0" prefWidth="582.0">
+                  <TableView fx:id="inventoryTable" maxHeight="1.7976931348623157E308" prefHeight="281.0" prefWidth="582.0" VBox.vgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="inventory_id" text="inventory_id" />
                       <TableColumn fx:id="warehouse_id" prefWidth="85.0" text="warehouse_id" />
@@ -79,7 +79,7 @@
                   <Pane prefHeight="25.0" prefWidth="221.0" />
                </children>
             </VBox>
-            <Button fx:id="addBtn" layoutX="46.0" layoutY="412.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addInventory" prefHeight="55.0" prefWidth="221.0" styleClass="add" text="Add" AnchorPane.bottomAnchor="40.0" />
+            <Button fx:id="addBtn" layoutX="29.0" layoutY="440.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addInventory" prefHeight="60.0" prefWidth="221.0" styleClass="add" text="Add" AnchorPane.bottomAnchor="40.0" />
          </children>
       </AnchorPane>
    </children>

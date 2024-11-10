@@ -18,7 +18,7 @@
                   <String fx:value="light-txt" />
                </styleClass>
             </Label>
-            <TextField fx:id="usernameTxt" prefHeight="30.0" promptText="User Name" />
+            <TextField fx:id="usernameTxt" disable="true" prefHeight="30.0" promptText="User Name" />
             <TextField fx:id="passwordTxt" prefHeight="30.0" promptText="Password" />
             <Button fx:id="updateBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateUser" prefHeight="42.0" prefWidth="234.0" text="Update">
                <styleClass>

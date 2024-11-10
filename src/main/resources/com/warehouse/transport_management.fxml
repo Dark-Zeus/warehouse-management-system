@@ -19,9 +19,9 @@
    <children>
       <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
-            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="557.0" spacing="40.0" stylesheets="@user_management.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="854.0" spacing="40.0" stylesheets="@user_management.css" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <padding>
-                  <Insets left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <children>
                   <Label styleClass="main-label" text="Transport Management" />
@@ -32,9 +32,9 @@
                         <TableColumn fx:id="destination" prefWidth="111.0" text="destination" />
                         <TableColumn fx:id="vehicle_type" prefWidth="101.0" text="vehicle_type" />
                         <TableColumn fx:id="vehicle_number" prefWidth="143.0" text="vehicle_number" />
-                        <TableColumn fx:id="contact_number" prefWidth="138.0" text="contact_number" />
+                        <TableColumn fx:id="contact_number" prefWidth="157.71429443359375" text="contact_number" />
                       
-                        <TableColumn fx:id="status" prefWidth="95.0" text="status" />
+                        <TableColumn fx:id="status" prefWidth="105.7142333984375" text="status" />
                      </columns>
                   </TableView>
                </children>
@@ -85,7 +85,7 @@
                   <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
                </padding>
             </VBox>
-            <Button fx:id="addBtn" layoutX="31.0" layoutY="523.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addTransport" prefHeight="58.0" prefWidth="221.0" text="Add Transport" AnchorPane.bottomAnchor="40.0">
+            <Button fx:id="addBtn" layoutX="31.0" layoutY="523.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addTransport" prefHeight="60.0" prefWidth="221.0" text="Add Transport" AnchorPane.bottomAnchor="40.0">
                <styleClass>
                   <String fx:value="button" />
                   <String fx:value="add" />

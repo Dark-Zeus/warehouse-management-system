@@ -17,14 +17,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="840.0" stylesheets="@invoice_management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.warehouse.controller.InvoiceManagementController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="840.0" stylesheets="@invoice_management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.warehouse.controller.InvoiceManagementController">
    <children>
       <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="467.0" prefWidth="602.0" HBox.hgrow="ALWAYS">
          <children>
-            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="560.0" spacing="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="561.0" spacing="40.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label styleClass="main-label" text="Invoice Management" />
-                  <TableView fx:id="invoiceTable" maxHeight="1.7976931348623157E308" prefHeight="281.0" prefWidth="465.0">
+                  <TableView fx:id="invoiceTable" maxHeight="1.7976931348623157E308" prefHeight="354.0" prefWidth="521.0" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="invoice_id" prefWidth="78.85714936256409" text="Invoice Id" />
                         <TableColumn fx:id="user_id" prefWidth="103.20001220703125" text="User Id" />
@@ -34,7 +34,7 @@
                   </TableView>
                </children>
                <padding>
-                  <Insets left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
             <GridPane hgap="100.0" layoutY="374.0" prefHeight="60.0" prefWidth="535.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
@@ -75,7 +75,7 @@
                   <ChoiceBox fx:id="userCmb" prefHeight="26.0" prefWidth="225.0" />
                   <TextField fx:id="totalamountTxt" prefHeight="30.0" promptText="Total Amount" />
                   <DatePicker fx:id="datePicker" prefHeight="26.0" prefWidth="222.0" promptText="Date" />
-                  <TextField fx:id="timeTxt" prefHeight="30.0" promptText="Time" />
+                  <TextField fx:id="timeTxt" prefHeight="30.0" promptText="Time hh:mm:ss" />
                   <Pane prefHeight="23.0" prefWidth="259.0" />
                </children>
                <padding>

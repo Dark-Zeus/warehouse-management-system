@@ -1,5 +1,6 @@
 package com.warehouse.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -48,7 +50,10 @@ public class InvoiceManagementController {
     private TextField totalamountTxt;
 
     @FXML
-    private TextField dateTxt;
+    private DatePicker datePicker;
+
+    @FXML
+    private TextField timeTxt;
 
     @FXML
     private Button addBtn;
@@ -88,7 +93,7 @@ public class InvoiceManagementController {
 
         newInvoice.setUser_id(userCmb.getValue());
         newInvoice.setTotal_amount(Double.parseDouble(totalamountTxt.getText()));
-        newInvoice.setDate(dateTxt.getText());
+        newInvoice.setDate(datePicker.getValue() + " " + timeTxt.getText());
 
         if (addMode.equals("update")) {
             newInvoice.setInvoice_id(selectedInvoiceId);
@@ -146,7 +151,10 @@ public class InvoiceManagementController {
             selectedInvoiceId = selectedInvoice.getInvoice_id();
             userCmb.setValue(selectedInvoice.getUser_id());
             totalamountTxt.setText(String.valueOf(selectedInvoice.getTotal_amount()));
-            dateTxt.setText(String.valueOf(selectedInvoice.getDate()));
+            String[] dateAndTime = selectedInvoice.getDate().split(" ");
+            LocalDate date = LocalDate.parse(dateAndTime[0]);
+            datePicker.setValue(date);
+            timeTxt.setText(dateAndTime[1]);
 
             addBtn.setText("Update Invoice");
             updateBtn.setDisable(true);
@@ -166,7 +174,9 @@ public class InvoiceManagementController {
         //userCmb.setValue(null);
         userCmb.getSelectionModel().clearSelection();
         totalamountTxt.clear();
-        dateTxt.clear();
+        datePicker.setValue(null);
+        timeTxt.clear();
+
         addBtn.setText("Add Invoice");
         updateBtn.setDisable(false);
         invoiceTable.setDisable(false);

@@ -51,7 +51,7 @@ public class DashboardController {
         Stage stage = new Stage();
         stage.setScene(inventoryManagement);
         stage.setTitle("Inventory Management");
-        stage.setMinWidth(830);
+        stage.setMinWidth(835);
         stage.setMinHeight(540);
         stage.show();
     }
@@ -67,10 +67,9 @@ public class DashboardController {
         Stage stage = new Stage();
         stage.setScene(invoiceManagement);
         stage.setTitle("Invoice Management");
-        stage.setMinWidth(840);
-        stage.setMinHeight(520);
+        stage.setMinWidth(845);
+        stage.setMinHeight(540);
         stage.show();
-
     }
 
     /**
@@ -85,8 +84,8 @@ public class DashboardController {
         stage.setScene(transportManagement);
         stage.setTitle("Transport Management");
 
-        stage.setMinWidth(1100);
-        stage.setMinHeight(620);
+        stage.setMinWidth(1150);
+        stage.setMinHeight(650);
         stage.show();
     }
 
@@ -104,7 +103,7 @@ public class DashboardController {
         Stage stage = new Stage();
         stage.setScene(userManagement);
         stage.setTitle("User Management");
-        stage.setMinWidth(860);
+        stage.setMinWidth(875);
         stage.setMinHeight(550);
         stage.show();
     }
