@@ -32,6 +32,9 @@ public class DashboardController {
     @FXML
     private Button warehouseManagementBtn;
 
+    @FXML
+    private Button logOutBtn;
+
 
     private User user;
 
@@ -132,6 +135,16 @@ public class DashboardController {
         Stage stage = new Stage();
         stage.setScene(warehouseManagement);
         stage.setTitle("Warehouse Management");
+        stage.show();
+    }
+
+    @FXML 
+    void logOut(ActionEvent event) throws IOException {
+        Scene login = new Scene(CFXMLLoader.loadFXML("login"));
+        Stage stage = (Stage) logOutBtn.getScene().getWindow();
+        stage.setScene(login);
+        stage.setTitle("Warehouse Mangement System");
+        stage.setResizable(false);
         stage.show();
     }
 

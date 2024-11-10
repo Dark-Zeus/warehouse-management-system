@@ -74,7 +74,7 @@ public class UserController {
 
         newUser.setUsername(usernameTxt.getText());
         newUser.setPassword(passwordTxt.getText());
-        newUser.setRole(roleCmb.getValue());
+        newUser.setRole(roleCmb.getValue().toLowerCase());
 
         // Check if the fields are empty
         if(newUser.getUsername().isEmpty() || newUser.getPassword().isEmpty() || newUser.getRole() == null){

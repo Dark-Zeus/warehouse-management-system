@@ -32,20 +32,6 @@
          </children>
       </GridPane>
    </center>
-   <top>
-      <Label text="Warehouse Management" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets top="50.0" />
-         </BorderPane.margin>
-         <font>
-            <Font name="Arial" size="12.0" />
-         </font>
-         <styleClass>
-            <String fx:value="main-label" />
-            <String fx:value="label" />
-         </styleClass>
-      </Label>
-   </top>
    <bottom>
       <GridPane hgap="20.0" prefHeight="51.0" prefWidth="499.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -68,4 +54,43 @@
          </BorderPane.margin>
       </GridPane>
    </bottom>
+   <top>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="554.2857055664062" minWidth="10.0" prefWidth="478.4285888671875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.14288330078125" minWidth="-Infinity" prefWidth="80.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Warehouse Management">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="main-label" />
+                  <String fx:value="label" />
+               </styleClass>
+               <graphic>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </graphic>
+            </Label>
+            <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#logOut" prefWidth="80.0" text="Log Out" GridPane.columnIndex="1" fx:id="logOutBtn" />
+         </children>
+         <BorderPane.margin>
+            <Insets right="50.0" top="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </top>
 </BorderPane>
