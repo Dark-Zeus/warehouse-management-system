@@ -16,15 +16,21 @@ The **Warehouse Management System** is a JavaFX-based desktop application that h
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/warehouse-management-system.git
+   git clone https://github.com/Dark-Zeus/warehouse-management-system.git
    cd warehouse-management-system
    ```
+2. **Download Maven**
+   ```bash
+    Visit the [Apache Maven download page](https://maven.apache.org/download.cgi).
+    Download the latest **binary zip archive** (e.g., `apache-maven-3.x.x-bin.zip`).
+   ```
 
-2. **Build the project** Use Maven to compile and package the project:
+3. **Build the project** Use Maven to compile and package the project:
     ```bash
     mvn clean install
     ```
-3. **Run the application** After building, use Maven to run the application:
+    
+4. **Run the application** After building, use Maven to run the application:
     ```bash
     mvn javafx:run
     ```
