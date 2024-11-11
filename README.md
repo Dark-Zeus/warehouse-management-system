@@ -16,7 +16,7 @@ The **Warehouse Management System** is a JavaFX-based desktop application that h
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/warehouse-management-system.git
+   git clone https://github.com/Dark-Zeus/warehouse-management-system.git
    cd warehouse-management-system
    ```
 2. **Download Maven**
